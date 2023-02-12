@@ -1,0 +1,124 @@
+:root{
+    --main-colour: #10BBE5;
+    --secundary-colour: #EEA47FFF;
+    --white: #fff;
+    --black: #000000;
+    --background: #eee;
+  }
+
+section{
+    height: 100vh;
+    padding:0 9%;
+    background:#A9A9A9;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll; 
+}
+
+.header-items{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.btn{
+    float: right;
+    background: var(--main-colour);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    color: var(--white);
+    font-size: 16px;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    margin-top: -50px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.btn:hover{
+    background: var(--white);
+    color: var(--main-colour);
+    border: 1px solid var(--main-colour);
+    transform: scale(1.05);
+}
+
+.icon{
+    fill: var(--main-colour);
+    width: 16px;
+    display: inline-block;
+}
+
+.icon-btn{
+    fill: var(--white);
+    width: 16px;
+    display: inline-block;
+}
+
+.btn:hover .icon-btn{
+    fill: var(--main-colour);
+}
+
+.dishes .box-container{
+    margin-top: 50px;
+    margin-left: 200px;
+    display: grid;
+    gap:1.5rem;
+}
+
+.dishes .box-container .box{
+    padding:1.5rem;
+    background:var(--white);
+    border-radius: .5rem;
+    border-left: 4px solid var(--main-colour);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+}
+
+.dishes .box-container .box h6{
+    border-radius: 1rem;
+    background-color: rgb(46, 197, 46);
+    opacity: 0.6;
+    letter-spacing: 1px;
+    width: 30%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.dishes .box-container .box h2{
+    letter-spacing: 1px;
+    margin: 5px 0;
+    font-size: 22px;
+    font-weight: bolder;
+}
+
+.dishes .box-container .box p{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 768px){
+    .dishes .box-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1440px){
+    .dishes .box-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1660px){
+    .dishes .box-container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

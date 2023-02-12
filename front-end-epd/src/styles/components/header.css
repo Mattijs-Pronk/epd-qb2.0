@@ -1,0 +1,132 @@
+:root{
+  --main-colour: #10BBE5;
+  --secundary-colour: #EEA47FFF;
+  --white: #fff;
+  --black: #000000;
+  --background: #eee;
+}
+
+*{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #383838;
+  border-bottom: 2px solid var(--main-colour);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
+  padding: 0px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+header .logo{
+  font-weight: bolder;
+  font-size: 35px;
+  color: var(--white);
+}
+
+header .navbar ul{
+  list-style: none;
+}
+
+header .navbar ul li{
+  position: relative;
+  float: left;
+}
+
+header .navbar ul li a{
+  font-size: 20px;
+  padding: 20px;
+  color: var(--white);
+  display: block;
+}
+
+header .navbar ul li a:hover{
+  color: var(--main-colour);
+}
+
+header .navbar ul li ul{
+  position: absolute;
+  left: -80px;
+  width: 300px;
+  background: var(--white);
+  border-radius: 5px;
+  border: 1px solid var(--main-colour);
+  display: none;
+  z-index: 1;
+}
+
+header .navbar ul li ul li{
+  width: 100%;
+}
+
+header .navbar ul li:focus-within ul,
+header .navbar ul li:hover ul{
+  display: initial;
+}
+
+header .navbar ul li ul li a{
+  display: block;
+  padding: 13px 30px;
+  color: var(--black);
+  font-size: 16px;
+  position: relative;
+  text-decoration: none;
+}
+
+header .navbar ul li ul li a .icon{
+  fill: var(--black);
+  padding-right: 0.5rem;
+  width: 30px;
+  display: inline-block;
+}
+
+header .navbar ul li ul li a:hover,
+header .navbar ul li ul li a.active{
+    color: var(--main-colour);
+}
+
+header .navbar ul li ul li a:hover .icon,
+header .navbar ul li ul li a.active .icon{
+    fill: var(--main-colour);
+}
+
+header .navbar ul li ul li p{
+  padding: 10px 10px 10px 10px;
+  color: var(--black);
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.profile{
+  width: 40px;
+  border-radius: 50%;
+}
+
+.profile-menu{
+  width: 60px;
+  border-radius: 50%;
+}
+
+header .navbar ul li .dropdown-icon{
+  fill: var(--white);
+  padding-right: 0.5rem;
+  width: 20px;
+  margin-left: 4px;
+  display: inline-block;
+}
+
+header .navbar ul li :hover .dropdown-icon,
+header .navbar ul li .active .dropdown-icon{
+    fill: var(--main-colour);
+}
