@@ -270,3 +270,44 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+
+
+  .inputBox{
+    margin: auto;
+    position: relative;
+    width: 60%;
+  }
+
+  .inputBox .inputBox-field{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--black);
+    background: var(--background);
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    transition: 0.5s;
+  }
+
+  .inputBox .inputBox-field ~ span,
+  .inputBox .inputBox-field ~ span{
+    color: var(--main-colour);
+    transform: translateX(10px) translateY(-4px);
+    background: var(--white);
+    font-size: 13px;
+    padding: 0 10px;
+    border-left: 3px solid var(--main-colour);
+    border-right: 3px solid var(--main-colour);
+    letter-spacing: 0.5px;
+  }
