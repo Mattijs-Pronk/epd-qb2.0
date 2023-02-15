@@ -76,7 +76,7 @@ section{
 }
 
 .dishes .box-container .box{
-    padding:1.5rem;
+    padding:.8rem;
     background:var(--white);
     border-radius: .5rem;
     border-left: 4px solid var(--main-colour);
@@ -105,6 +105,11 @@ section{
 .dishes .box-container .box p{
     font-size: 14px;
     font-weight: bold;
+}
+
+.dishes .box-container .box img{
+    width: 100px;
+    border-radius: 50%;
 }
 
 @media screen and (min-width: 768px){

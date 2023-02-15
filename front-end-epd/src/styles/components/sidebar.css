@@ -22,7 +22,6 @@ body{
 .wrapper .sidebar{
     background: var(--white);
     position: fixed;
-    z-index: 1;
     top: 98px;
     left: 0;
     width: 225px;

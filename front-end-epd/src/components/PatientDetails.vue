@@ -1,10 +1,19 @@
 <script setup>
-import EditPatientDetails from '../components/EditPatientDetails.vue';
+import EditPatientDetails from './EditPatientDetails.vue';
+import EditMedicine from './EditMedicine.vue';
+import EditDescription from './EditDescription.vue';
+import AddPatientHistory from './AddPatientHistory.vue';
 </script>
 
 <template>
-    <EditPatientDetails v-if="editpatientdetails == true" :getEditPatientdetails="editpatientdetails" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"/>
-<section v-if="getPatientdetails">
+    <component :is="compToRender" 
+    v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
+    v-on:changeEditMedicineComponent="closeEditMedicine()"
+    v-on:changeEditDescriptionComponent="closeEditDescription()"
+    v-on:changeAddHistoryComponent="closeAddHistory()"
+    ></component>
+
+    <section v-if="getPatientdetails">
     <div class="container" id="background">
 
     <button v-bind:disabled="enableBtn" class="btn-return" v-on:click="switchActiveComponent()">
@@ -14,7 +23,7 @@ import EditPatientDetails from '../components/EditPatientDetails.vue';
     <br/>
         <div class="box2">
             <h1>Patient Dossier</h1>
-            <hr/><br/>   
+            <hr/>   
             <p class="p-trunc">
             <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg></span>
             Patient details: 
@@ -44,7 +53,7 @@ import EditPatientDetails from '../components/EditPatientDetails.vue';
             </p1><br/>
             <p1 class="description">
                 <p2 class="details">Hospital:</p2> Pillbox medical
-            </p1><br/>
+            </p1>
             <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="opendEditPatientDetails()">
                 <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></span>
                 <span> Edit</span>
@@ -60,7 +69,7 @@ import EditPatientDetails from '../components/EditPatientDetails.vue';
             <p1 class="description">
                 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintocksick
             </p1><br/>
-            <button v-bind:disabled="enableBtn" class="btn-edit">
+            <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditMedicine()">
                 <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></span>
                 <span> Edit</span>
             </button> 
@@ -74,19 +83,19 @@ import EditPatientDetails from '../components/EditPatientDetails.vue';
             <p1 class="description">
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
             </p1><br/>
-            <button v-bind:disabled="enableBtn" class="btn-edit">
+            <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditDescription()">
                 <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.8 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg></span>
                 <span> Edit</span>
             </button>        
         </div>
     
         <div class="box3">
-            <h2>Patients history</h2>   
-            <button v-bind:disabled="enableBtn" class="btn">
+            <h1>Patients history</h1>   
+            <button v-bind:disabled="enableBtn" class="btn" v-on:click="openAddHistory()">
                 <span class="icon-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M240 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H176V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H240V80z"/></svg></span>
                 <span> Add</span>
-            </button>  
-            <br/>
+            </button><hr/>
+
             <div class="box4">
                 <h2>Gebroken been</h2>
                 <p class="p-trunc">
@@ -144,26 +153,64 @@ import EditPatientDetails from '../components/EditPatientDetails.vue';
 export default{
     data(){
         return{
-            editpatientdetails: false,
+            compToRender: '',
             enableBtn: false
         }
+    },
+    components: {
+        EditPatientDetails,
+        EditMedicine,
+        EditDescription,
+        AddPatientHistory
     },
     props: [
         'getPatientdetails'
     ],
-    emits: ["changePatientDetailsComponent"],
+    emits: [
+        "changePatientDetailsComponent"
+    ],
     methods:{
         switchActiveComponent(){
             this.$emit('changePatientDetailsComponent', true)
         },
         closeEditPatientDetails(){
             this.enableBtn = false;
-            this.editpatientdetails = false;
+            this.compToRender = '';
             document.getElementById('background').style.filter = 'none'
         },
         opendEditPatientDetails(){
             this.enableBtn = true;
-            this.editpatientdetails = true;
+            this.compToRender = 'EditPatientDetails';
+            document.getElementById('background').style.filter = 'blur(7px)'
+        },
+        closeEditMedicine(){
+            this.enableBtn = false;
+            this.compToRender = '';
+            document.getElementById('background').style.filter = 'none'
+        },
+        openEditMedicine(){
+            this.enableBtn = true;
+            this.compToRender = 'EditMedicine';
+            document.getElementById('background').style.filter = 'blur(7px)'
+        },
+        closeEditDescription(){
+            this.enableBtn = false;
+            this.compToRender = '';
+            document.getElementById('background').style.filter = 'none'
+        },
+        openEditDescription(){
+            this.enableBtn = true;
+            this.compToRender = 'EditDescription';
+            document.getElementById('background').style.filter = 'blur(7px)'
+        },
+        closeAddHistory(){
+            this.enableBtn = false;
+            this.compToRender = '';
+            document.getElementById('background').style.filter = 'none'
+        },
+        openAddHistory(){
+            this.enableBtn = true;
+            this.compToRender = 'AddPatientHistory';
             document.getElementById('background').style.filter = 'blur(7px)'
         }
     }

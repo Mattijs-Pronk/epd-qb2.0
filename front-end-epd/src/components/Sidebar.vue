@@ -1,6 +1,7 @@
 <script setup>
 import Home from '../components/Home.vue';
 import ViewPatients from '../components/ViewPatients.vue';
+import AddPatient from './AddPatient.vue';
 </script>
 
 <template>
@@ -26,7 +27,7 @@ import ViewPatients from '../components/ViewPatients.vue';
                     </a>
                     <ul id="patients"> 
                         <li>
-                            <a href="#" v-on:click="makeActive(3)" v-bind:class="{ active: isActive == 3 }">
+                            <a href="#" v-on:click="makeActive(3), compToRender = 'AddPatient'" v-bind:class="{ active: isActive == 3 }">
                                 <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M240 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H176V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H240V80z"/></svg></span>
                                 <span>Add patient</span>
                             </a>
@@ -68,7 +69,9 @@ import ViewPatients from '../components/ViewPatients.vue';
         </div>
     </div>
 
-    <component :is="compToRender" :getPatientdetails="setPatientdetails"></component>
+    <component 
+    :is="compToRender" :getPatientdetails="setPatientdetails"
+    ></component>
 </template>
 
 <script>
@@ -83,6 +86,7 @@ export default{
     components:{
         Home,
         ViewPatients,
+        AddPatient,
     },
     methods: {
         makeActive(el) {
@@ -96,9 +100,6 @@ export default{
                 document.getElementById("patients").style.display = "block"
             }
         },
-        togglePatientsdetails(){
-            this.showBottomBar = !this.showBottomBar
-        }
     }
 }
 </script>

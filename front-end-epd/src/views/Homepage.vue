@@ -1,11 +1,11 @@
 <script setup>
 import Header from '../components/Header.vue';
-import EditPatientDetails from '../components/EditPatientDetails.vue';
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
-    <!-- <EditPatientDetails/> -->
     <Header/>
+    <Footer/>
 </template>
 
 
