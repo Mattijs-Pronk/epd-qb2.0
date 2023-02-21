@@ -2,10 +2,9 @@
   --main-colour: #10BBE5;
   --secundary-colour: #EEA47FFF;
   --white: #fff;
-  --text-background: #E8E8E8;
   --black: #000000;
-  --background: #ccc;
-  --darkbackground: #383838;
+  --background: #eee;
+  --darkbackground: #181818;
 }
 
 * {
@@ -14,19 +13,16 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.container .box hr{
-  color: var(--black);
-}
 
 .container {
-  z-index: 2;
+  z-index: 1;
   position: fixed;
   text-align: center;
-  width: 50%;
-  top: 58.5%;
-  margin-left: 50%;
+  width: 70%;
+  top: 8.5%;
+  margin-left: 5%;
+  margin-right: 5%;
   height: 100%;
-  transform: translate(-50%, -50%);
   border-radius: 1rem;
   box-shadow: var(--box-shadow);
 }
@@ -40,12 +36,43 @@
   overflow: hidden;
 }
 
+.container .box hr{
+  color: var(--black);
+}
+
 .box h1 {
   letter-spacing: 1px;
   margin: 5px 0;
   font-size: 40px;
   font-weight: bolder;
   color: var(--black);
+}
+
+.box p {
+  display: flex;
+}
+
+.box img {
+  width: 200px;
+  border-radius: 20%;
+  border: 2px solid var(--main-colour);
+}
+
+.details {
+  font-size: 16px;
+  font-weight: bold;
+  word-wrap: break-word
+}
+
+.icon {
+  fill: var(--main-colour);
+  width: 16px;
+  display: inline-block;
+}
+
+.btn-align{
+  border: 1px solid black;
+  margin: 1rem;
 }
 
 .btn-save {
@@ -78,6 +105,35 @@
 
 .btn-save:hover .icon-btn-save {
   fill: #4CAF50;
+}
+
+.btn-add {
+  float: left;
+  background: #4CAF50;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  font-size: 16px;
+  padding: 5px 10px;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
+  width: 100px;
+}
+
+.btn-add:hover {
+  border: 1px solid #4CAF50;
+  background: var(--white);
+  color: #4CAF50;
+}
+
+.btn-add option{
+  background: var(--white);
+  color: var(--black);
 }
 
 .btn-cancel {
@@ -125,6 +181,7 @@
   transform: scale(1.1);
 }
 
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -163,7 +220,7 @@
   width: 26px;
   left: 4px;
   bottom: 3px;
-  background-color: var(--white);
+  background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -191,12 +248,10 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-
-
 .inputBox {
-  margin: auto;
+  margin-left: 10px;
   position: relative;
-  width: 60%;
+  width: 90%;
 }
 
 .inputBox .inputBox-field {
@@ -237,12 +292,142 @@ input:checked+.slider:before {
   border-radius: 10px;
 }
 
-.details{
+.box-align{
+  display: flex;
+  width: 100%;
+}
+
+.box1{
+  flex: 1;
+  margin: 10px;
+  width: 70%;
+}
+
+.box2 {
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 30%;
+  padding: 1rem;
+  height:fit-content;
+  background: var(--white);
+  border-radius: .5rem;
+  border-left: 1px solid var(--main-colour);
+  border-right: 1px solid var(--main-colour);
+  overflow: hidden;
+}
+
+.container .box2 hr{
   color: var(--black);
+  margin-bottom: 30px;
+}
+
+.box2 h1 {
+  letter-spacing: 1px;
+  margin: 5px 0;
+  font-size: 20px;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.box2 p {
+  font-size: 16px;
+  margin-top: -16px;
+  font-weight: normal;
+  color: var(--black);
+}
+
+.select-menu {
+  margin: 10px;
+}
+
+.select {
+  font-size: 18px;
+  padding: 11px 0;
+  width: 70%;
+  color: var(--black);
+  background-color: var(--white);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.select:focus,
+.select:hover {
+  outline: none;
+  border: 1px solid var(--main-colour);
+}
+
+.select option {
+  text-align: left;
+  font-size: 18px;
+  background-color: var(--white);
+}
+
+.table {
+  width: 100%;
+  color: var(--white);
+}
+
+.thead-dark th {
+  font-size: 17px;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.table tr {
+  height: 10px;
+  text-align: left;
+  color: var(--black);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--main-colour);
+  cursor: pointer;
+}
+
+.table tr:hover {
+  background-color: var(--background);
+}
+
+.btn-delete {
+  border: none;
+  float: right;
+  background: #D11A2A;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  font-size: 15px;
+  padding: 0px 4px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.btn-delete:hover {
+  background: var(--white);
+  color: #D11A2A;
+}
+
+.icon-btn-delete {
+  fill: var(--white);
+  width: 16px;
+  display: inline-block;
+}
+
+.btn-delete:hover .icon-btn-delete {
+  fill: #D11A2A;
 }
 
 @media screen and (max-width: 1080px) {
   .inputBox .inputBox-field {
     height: 30px;
+  }
+
+  .select {
+    padding: 5px 0;
+    font-size: 16px;
+  }
+
+  .select option {
+    font-size: 16px;
   }
 }

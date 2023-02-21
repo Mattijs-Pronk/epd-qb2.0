@@ -1,61 +1,62 @@
-:root{
+:root {
   --main-colour: #10BBE5;
-  --secundary-colour: #EEA47FFF;
-  --white: #fff;
-  --black: #000000;
-  --background: #eee;
+    --secundary-colour: #EEA47FFF;
+    --white: #fff;
+    --black: #000000;
+    --background: #ccc;
+    --darkbackground: #181818;
 }
 
-*{
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-header{
+header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #383838;
+  background-color: var(--darkbackground);
   border-bottom: 2px solid var(--main-colour);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .4);
   padding: 0px 8%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1;
+  z-index: 3;
 }
 
-header .logo{
+header .logo {
   font-weight: bolder;
   font-size: 35px;
-  color: var(--white);
+  color: #fff;
 }
 
-header .navbar ul{
+header .navbar ul {
   list-style: none;
 }
 
-header .navbar ul li{
+header .navbar ul li {
   position: relative;
   float: left;
 }
 
-header .navbar ul li a{
+header .navbar ul li a {
   font-size: 20px;
-  padding: 20px;
+  padding: 10px;
   color: var(--white);
   display: block;
 }
 
-header .navbar ul li a:hover{
+header .navbar ul li a:hover {
   color: var(--main-colour);
 }
 
-header .navbar ul li ul{
+header .navbar ul li ul {
   position: absolute;
   left: -80px;
   width: 300px;
@@ -66,16 +67,16 @@ header .navbar ul li ul{
   z-index: 1;
 }
 
-header .navbar ul li ul li{
+header .navbar ul li ul li {
   width: 100%;
 }
 
 header .navbar ul li:focus-within ul,
-header .navbar ul li:hover ul{
+header .navbar ul li:hover ul {
   display: initial;
 }
 
-header .navbar ul li ul li a{
+header .navbar ul li ul li a {
   display: block;
   padding: 13px 30px;
   color: var(--black);
@@ -84,7 +85,7 @@ header .navbar ul li ul li a{
   text-decoration: none;
 }
 
-header .navbar ul li ul li a .icon{
+header .navbar ul li ul li a .icon {
   fill: var(--black);
   padding-right: 0.5rem;
   width: 30px;
@@ -92,34 +93,41 @@ header .navbar ul li ul li a .icon{
 }
 
 header .navbar ul li ul li a:hover,
-header .navbar ul li ul li a.active{
-    color: var(--main-colour);
+header .navbar ul li ul li a.active {
+  color: var(--main-colour);
 }
 
 header .navbar ul li ul li a:hover .icon,
-header .navbar ul li ul li a.active .icon{
-    fill: var(--main-colour);
+header .navbar ul li ul li a.active .icon {
+  fill: var(--main-colour);
 }
 
-header .navbar ul li ul li p{
+header .navbar ul li ul li p {
   padding: 10px 10px 10px 10px;
   color: var(--black);
   font-size: 20px;
   font-weight: bolder;
 }
 
-.profile{
+.profile {
   width: 40px;
   border-radius: 50%;
 }
 
-.profile-menu{
+.profile-menu {
   width: 60px;
   border-radius: 50%;
 }
 
-header .navbar ul li .dropdown-icon{
-  fill: var(--white);
+.icon {
+  fill: var(--main-colour);
+  margin-right: 10px;
+  width: 30px;
+  display: inline-block;
+}
+
+header .navbar ul li .dropdown-icon {
+  fill: #fff;
   padding-right: 0.5rem;
   width: 20px;
   margin-left: 4px;
@@ -127,6 +135,82 @@ header .navbar ul li .dropdown-icon{
 }
 
 header .navbar ul li :hover .dropdown-icon,
-header .navbar ul li .active .dropdown-icon{
-    fill: var(--main-colour);
+header .navbar ul li .active .dropdown-icon {
+  fill: var(--main-colour);
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid var(--main-colour);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  margin-left: 2px;
+  height: 20px;
+  width: 20px;
+  top: 1px;
+  background-color: var(--white);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--main-colour);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px var(--main-colour);
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.text{
+  color: #fff
+}
+
+.text-time{
+  margin-right: 10px;
+  margin-top: 17px;
+  color: #fff
 }

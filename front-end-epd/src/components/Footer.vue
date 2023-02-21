@@ -1,25 +1,25 @@
 <template>
     <footer>
         <div class="footer-border">
-            <a class="logo">EPD</a>
-            <img class="logo-img" src = "./icons/qbBlue.png" alt = "food">
-            <p class="text">Copyright © 2023-{{autodate}} Mattijs Pronk, Inc - All Rights Reserved</p>
+            <!-- <a class="logo">EPD</a> -->
+            <!-- <img class="logo-img" src = "./icons/qbBlue.png" alt = "food"> -->
+            <p class="text">Copyright © 2023-{{ autodate }} Mattijs Pronk, Inc - All Rights Reserved</p>
         </div>
     </footer>
 </template>
 
 <script>
-export default{
-    data(){
-        return{
+export default {
+    data() {
+        return {
             autodate: ''
         }
     },
-    mounted(){
-      this.autoIncrement()
+    mounted() {
+        this.autoIncrement()
     },
     methods: {
-        autoIncrement(){
+        autoIncrement() {
             this.autodate = (new Date().getFullYear())
         }
     }
@@ -27,5 +27,5 @@ export default{
 </script>
 
 <style scoped>
-    @import '../styles/components/footer.css';
+@import '../styles/components/footer.css';
 </style>

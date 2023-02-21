@@ -1,51 +1,59 @@
-:root{
+:root {
     --main-colour: #10BBE5;
     --secundary-colour: #EEA47FFF;
     --white: #fff;
     --black: #000000;
-    --background: #A9A9A9;
-  }
-  
-  *{
-      text-decoration: none;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
+    --background: #ccc;
+    --darkbackground: #181818;
   }
 
-.meal-search{
-    margin-top: 90px;
-    width: 100%;
-    padding: 10px;
-    background-color: #A9A9A9;
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
-.meal-search-box{
-    margin: 1.2rem 0;
+.patient-search {
+    margin-left: 225px;
+    margin-right: 0;
+    padding-top: 100px;
+    padding-bottom: 20px;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+}
+
+.patient-search-box {
     display: flex;
     align-items: stretch;
-    width: 35%;
-    background-color: #A9A9A9;
+    width: 40%;
+    background-color: var(--background);
 }
+
 .search-control,
-.search-btn{
+.search-btn {
     width: 100%;
 }
-.search-control{
+
+.search-control {
     padding: 0 1rem;
     font-size: 1.2rem;
     font-family: inherit;
     outline: 0;
+    background-color: var(--white);
     border: 1px solid var(--main-colour);
     color: var(--black);
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
 }
-.search-control::placeholder{
+
+.search-control::placeholder {
     color: var(--black);
 }
-.search-btn{
+
+.search-btn {
     width: 70px;
     height: 50px;
     font-size: 2.2rem;
@@ -61,42 +69,13 @@
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
 }
-.search-btn:hover{
+
+.search-btn:hover {
     background-color: var(--black);
 }
 
-.icon{
+.icon {
     margin-top: -5px;
     fill: var(--white);
     width: 30px;
-}
-
-@media screen and (max-width: 2560px){
-	.meal-search-box{
-		margin-left: 38%;
-	}
-}
-
-@media screen and (max-width: 1440px){
-	.meal-search-box{
-        margin-left: 42%;
-    }
-}
-
-@media screen and (max-width: 1024px){
-	.meal-search-box{
-        margin-left: 45%;
-    }
-}
-
-@media screen and (max-width: 768px){
-	.meal-search-box{
-        margin-left: 50%;
-    }
-}
-
-@media screen and (max-width: 568px){
-	.meal-search-box{
-		width: 100%;
-	}
 }

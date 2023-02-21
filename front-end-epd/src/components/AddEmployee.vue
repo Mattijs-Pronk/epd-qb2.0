@@ -2,7 +2,7 @@
     <section>
         <div class="container">
             <div class="box">
-                <h1>Add patient</h1>
+                <h1>Add employee</h1>
                 <hr />
                 <p class="p-trunc">
                     <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +10,7 @@
                             <path
                                 d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
                         </svg></span>
-                    Patient details
+                    Employee details
                 </p><br />
 
                 <div class="inputBox">
@@ -41,6 +41,16 @@
                     <input class="inputBox-field" type="text">
                     <span>Email</span>
                 </div>
+
+                <div class="select-menu">
+                    <select class="select" id="ddlselect" v-on:change="setRank()">
+                    <option value="" selected disabled>Select rank</option>
+                    <option value="doc2">Doc2</option>
+                    <option value="doc3">Doc3</option>
+                    <option value="doc4">Doc4</option>
+                </select>
+                </div>
+
                 <a class="btn-save">
                     <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -51,7 +61,35 @@
                 </a>
             </div>
         </div>
-</section></template>
+    </section>
+</template>
 
 
-<style scoped>@import '../styles/components/addpatient.css';</style>
+<script>
+export default {
+    data() {
+        return {
+            isActive: '',
+            rank: '',
+        }
+    },
+    methods: {
+        setRank() {
+            this.rank = document.getElementById("ddlselect").value;
+        },
+        DropdownRanks() {
+            this.isActive = document.getElementById("dropdown-ranks");
+            if (this.isActive.style.display == "block") {
+                this.isActive.style.display = "none"
+            }
+            else {
+                this.isActive.style.display = "block"
+            }
+        },
+    }
+}
+</script>
+
+<style scoped>
+@import '../styles/components/addemployee.css';
+</style>

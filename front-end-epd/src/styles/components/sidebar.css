@@ -1,107 +1,115 @@
-:root{
+:root {
   --main-colour: #10BBE5;
   --secundary-colour: #EEA47FFF;
   --white: #fff;
+  --text-background: #E8E8E8;
   --black: #000000;
-  --background: #eee;
+  --background: #ccc;
+  --darkbackground: #383838;
 }
 
-*{
-    list-style: none;
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
-body{
-    background: var(--background);
+.wrapper .sidebar {
+  background: var(--white);
+  position: fixed;
+  top: 78px;
+  bottom: 0;
+  left: 0;
+  width: 225px;
+  padding: 20px 0;
+  transition: all 0.5s ease;
+  border-right: 1px solid #383838;
+  overflow: auto;
 }
 
-.wrapper .sidebar{
-    background: var(--white);
-    position: fixed;
-    top: 98px;
-    left: 0;
-    width: 225px;
-    height: 100%;
-    padding: 20px 0;
-    transition: all 0.5s ease;
-    border-right: 1px solid #383838;
-}
-
-.wrapper .sidebar .navigation p{
+.wrapper .sidebar .navigation p {
   color: var(--black);
-  width: 2rem;
+  width: 3rem;
   font-size: 14px;
   margin-left: 2rem;
-  font-weight: bold;
+  font-weight: normal;
   border-bottom: 1px solid var(--main-colour);
 }
 
 
 
-.wrapper .sidebar ul li a{
+.wrapper .sidebar ul li a {
   display: block;
-  padding: 13px 10px;
+  padding: 13px 0px;
+  margin-bottom: 1px;
+  margin-left: -8px;
   color: var(--black);
   font-size: 18px;
   position: relative;
   text-decoration: none;
 }
 
-.wrapper .sidebar ul li a .icon{
+.wrapper .sidebar ul li a .icon {
   fill: var(--black);
   padding-right: 0.5rem;
   width: 30px;
-  display: inline-block;
-}
-
-.wrapper .sidebar ul li a .dropdown-icon{
-  fill: var(--black);
-  padding-right: 0.5rem;
-  width: 18px;
   margin-left: 10px;
   display: inline-block;
 }
 
-.wrapper .sidebar ul li a:hover .dropdown-icon,
-.wrapper .sidebar ul li a.active .dropdown-icon{
-    fill: var(--main-colour);
+.wrapper .sidebar ul li a .dropdown-icon {
+  fill: var(--black);
+  padding-right: 0.5rem;
+  width: 18px;
+  margin-right: 5px;
+  float: right;
 }
 
-
+.wrapper .sidebar ul li a:hover .dropdown-icon,
+.wrapper .sidebar ul li a.active .dropdown-icon {
+  fill: var(--main-colour);
+}
 
 .wrapper .sidebar ul li a:hover,
-.wrapper .sidebar ul li a.active{
-    color: var(--main-colour);
-    background: var(--background);
-    border-right: 4px solid var(--main-colour);
+.wrapper .sidebar ul li a.active {
+  color: var(--main-colour);
+  background-color: var(--text-background);
+  border-right: 4px solid var(--main-colour);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .wrapper .sidebar ul li a:hover .icon,
-.wrapper .sidebar ul li a.active .icon{
-    fill: var(--main-colour);
+.wrapper .sidebar ul li a.active .icon {
+  fill: var(--main-colour);
 }
 
 
-.wrapper .sidebar ul li ul{
+.wrapper .sidebar ul li ul {
   display: none;
 }
 
-/* .wrapper .sidebar ul li:focus-within ul{
-  display: block;
-} */
-
-.wrapper .sidebar ul li ul li a{
+.wrapper .sidebar ul li ul li a {
+  margin-left: -20px;
   font-size: 12px;
   text-decoration: none;
 }
 
-.wrapper .sidebar ul li a .icon{
+.wrapper .sidebar ul li a .icon {
   fill: var(--black);
-  padding-right: 0.5rem;
   width: 30px;
   display: inline-block;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--white);
 }
