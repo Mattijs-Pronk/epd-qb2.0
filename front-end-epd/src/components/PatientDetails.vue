@@ -16,7 +16,6 @@ import AddPatientHistory from './AddPatientHistory.vue';
                         <path
                             d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
                     </svg></span>
-                <span> Return</span>
             </button>
                 <hr />
                 <p class="p-trunc">
@@ -211,9 +210,12 @@ import AddPatientHistory from './AddPatientHistory.vue';
         </div>
     </section>
 
-    <component :is="compToRender" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
-        v-on:changeEditMedicineComponent="closeEditMedicine()" v-on:changeEditDescriptionComponent="closeEditDescription()"
-        v-on:changeAddHistoryComponent="closeAddHistory()"></component>
+    <component :is="compToRender" 
+        :getEditPatientdetailsComp="setEditPatientdetailsComp" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
+        v-on:changeEditMedicineComponent="closeEditMedicine()" 
+        v-on:changeEditDescriptionComponent="closeEditDescription()"
+        v-on:changeAddHistoryComponent="closeAddHistory()">
+    </component>
 </template>
     
 <script>
@@ -221,7 +223,10 @@ export default {
     data() {
         return {
             compToRender: '',
-            enableBtn: false
+            enableBtn: false,
+            current: this.getPatientdetails,
+
+            setEditPatientdetailsComp: false
         }
     },
     components: {
@@ -243,12 +248,16 @@ export default {
         closeEditPatientDetails() {
             this.enableBtn = false;
             this.compToRender = '';
-            document.getElementById('background').style.filter = 'none'
+
+            document.documentElement.style.overflow = 'scroll';
+            document.getElementById('background').style.filter = 'none';
         },
         opendEditPatientDetails() {
             this.enableBtn = true;
             this.compToRender = 'EditPatientDetails';
-            document.getElementById('background').style.filter = 'blur(7px)'
+
+            document.documentElement.style.overflow = 'hidden';
+            document.getElementById('background').style.filter = 'blur(7px)';
         },
         closeEditMedicine() {
             this.enableBtn = false;

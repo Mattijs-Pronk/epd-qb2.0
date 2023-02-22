@@ -14,42 +14,73 @@
                 </p><br />
 
                 <div class="inputBox">
-                    <input class="inputBox-field" type="text">
+                    <input class="inputBox-field" type="text" required="required">
                     <span>Image URL</span>
                 </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>FullName</span>
+                <div class="inputBox-align">
+                    <div class="inputBox-first">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Firstname</span>
+                    </div>
+                    <div class="inputBox-middle">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Infix</span>
+                    </div>
+                    <div class="inputBox-last">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Lastname</span>
+                    </div>
+                </div>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>DateOfBirth</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>CitizenServiceNumber</span>
+                    </div>
+                </div>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Adress</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Phone</span>
+                    </div>
                 </div>
                 <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>DateOfBirth</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>CitizenServiceNumber</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>Adress</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>PhoneNumber</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
+                    <input class="inputBox-field" type="text" required="required">
                     <span>Email</span>
                 </div>
 
-                <div class="select-menu">
+                <div class="dropdown-center">
+                    <div class="dropdown">
+                        <span id="currentrank">Rank</span><span class="dropdown-icon"><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                            </svg></span>
+                        <div class="dropdown-content">
+                            <p v-for="rank in this.Ranks" :key="rank.id" v-on:click="setRank(rank.id, rank.rank)">
+                                {{ rank.rank }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- <div class="select-menu">
                     <select class="select" id="ddlselect" v-on:change="setRank()">
                     <option value="" selected disabled>Select rank</option>
                     <option value="doc2">Doc2</option>
                     <option value="doc3">Doc3</option>
                     <option value="doc4">Doc4</option>
                 </select>
-                </div>
+                </div> -->
 
                 <a class="btn-save">
                     <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +102,15 @@ export default {
         return {
             isActive: '',
             rank: '',
+            Ranks: [],
         }
+    },
+    mounted(){
+        this.Ranks.push({ id: '1', rank: 'Intern' })
+        this.Ranks.push({ id: '2', rank: 'Driver' })
+        this.Ranks.push({ id: '3', rank: 'Nurse' })
+        this.Ranks.push({ id: '4', rank: 'Doctor' })
+        this.Ranks.push({ id: '5', rank: 'Manager' })
     },
     methods: {
         setRank() {

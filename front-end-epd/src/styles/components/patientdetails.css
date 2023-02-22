@@ -60,6 +60,7 @@ section {
 .btn {
     border: none;
     float: right;
+    border: 1px solid #4CAF50;
     background: #4CAF50;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     color: var(--white);
@@ -93,6 +94,7 @@ section {
 .btn-edit {
     border: none;
     float: right;
+    border: 1px solid #FFCE30;
     background: #FFCE30;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     color: var(--white);
@@ -138,12 +140,12 @@ section {
 
 .btn-return {
     position: absolute;
-    border: none;
+    border: 1px solid var(--main-colour);
     background: var(--main-colour);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
     color: var(--white);
-    padding: 10px 20px;
-    margin-top: -60px;
+    padding: 5px 10px;
+    margin-top: -55px;
     letter-spacing: 1px;
     font-weight: bold;
     border-radius: 20px;
@@ -151,12 +153,14 @@ section {
     font-size: 16px;
     letter-spacing: 1px;
     cursor: pointer;
-    width: 130px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
 }
 
 .icon-btn-return {
     fill: var(--white);
-    width: 16px;
+    width: 18px;
     display: inline-block;
 }
 
@@ -256,11 +260,11 @@ section {
 }
 
 .description {
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
 .details {
     font-size: 16px;
     font-weight: bold;
-    word-wrap: break-word
+    word-wrap: break-word;
 }

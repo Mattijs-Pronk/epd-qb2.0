@@ -13,18 +13,20 @@
   font-family: 'Roboto', sans-serif;
 }
 
+section {
+  margin-left: 225px;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 
 .container {
-  z-index: 1;
   position: fixed;
-  text-align: center;
   width: 70%;
-  top: 8.5%;
-  margin-left: 5%;
-  margin-right: 5%;
-  height: 100%;
-  border-radius: 1rem;
-  box-shadow: var(--box-shadow);
+  top: 95px;
+  height: 85%;
+  overflow-y: auto;
 }
 
 .box {
@@ -33,10 +35,11 @@
   border-radius: .5rem;
   border-left: 4px solid var(--main-colour);
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
-  overflow: hidden;
+  width: 100%;
+  display: inline-block;
 }
 
-.container .box hr{
+.container .box hr {
   color: var(--black);
 }
 
@@ -70,7 +73,7 @@
   display: inline-block;
 }
 
-.btn-align{
+.btn-align {
   border: 1px solid black;
   margin: 1rem;
 }
@@ -131,7 +134,7 @@
   color: #4CAF50;
 }
 
-.btn-add option{
+.btn-add option {
   background: var(--white);
   color: var(--black);
 }
@@ -248,12 +251,61 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-.inputBox {
-  margin-left: 10px;
-  position: relative;
-  width: 90%;
+.inputBox-align {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
 }
 
+.inputBox-first {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-right: 20px;
+}
+
+.inputBox-middle {
+  margin: auto;
+  position: relative;
+  width: 20%;
+}
+
+.inputBox-last {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.inputBox-dob {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-right: 10px;
+  margin-left: 50px;
+}
+
+.inputBox-csn {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-left: 10px;
+  margin-right: 50px;
+}
+
+.inputBox {
+  margin: auto;
+  position: relative;
+  width: 60%;
+}
+
+.inputBox-dob .inputBox-field,
+.inputBox-csn .inputBox-field,
+.inputBox-middle .inputBox-field,
+.inputBox-last .inputBox-field,
+.inputBox-first .inputBox-field,
 .inputBox .inputBox-field {
   width: 100%;
   height: 40px;
@@ -264,6 +316,7 @@ input:checked+.slider:before {
   margin-top: 12px;
   margin-bottom: 12px;
   background-color: var(--text-background);
+  color: var(--black);
 }
 
 .inputBox-field:hover,
@@ -271,6 +324,11 @@ input:checked+.slider:before {
   background-color: var(--white);
 }
 
+.inputBox-dob span,
+.inputBox-csn span,
+.inputBox-middle span,
+.inputBox-last span,
+.inputBox-first span,
 .inputBox span {
   position: absolute;
   left: 0;
@@ -281,7 +339,11 @@ input:checked+.slider:before {
   transition: 0.5s;
 }
 
-.inputBox .inputBox-field~span,
+.inputBox-dob .inputBox-field~span,
+.inputBox-csn .inputBox-field~span,
+.inputBox-middle .inputBox-field~span,
+.inputBox-last .inputBox-field~span,
+.inputBox-first .inputBox-field~span,
 .inputBox .inputBox-field~span {
   color: var(--black);
   transform: translateX(10px) translateY(-1px);
@@ -292,23 +354,26 @@ input:checked+.slider:before {
   border-radius: 10px;
 }
 
-.box-align{
+.details {
+  color: var(--black);
+}
+
+.box-align {
   display: flex;
   width: 100%;
 }
 
-.box1{
+.box1 {
   flex: 1;
-  margin: 10px;
-  width: 70%;
+  margin-right: 3%;
+  width: 75%;
 }
 
 .box2 {
   margin-top: 20px;
-  margin-right: 20px;
-  width: 30%;
+  width: 25%;
   padding: 1rem;
-  height:fit-content;
+  height: fit-content;
   background: var(--white);
   border-radius: .5rem;
   border-left: 1px solid var(--main-colour);
@@ -316,7 +381,7 @@ input:checked+.slider:before {
   overflow: hidden;
 }
 
-.container .box2 hr{
+.container .box2 hr {
   color: var(--black);
   margin-bottom: 30px;
 }
@@ -345,7 +410,7 @@ input:checked+.slider:before {
   padding: 11px 0;
   width: 70%;
   color: var(--black);
-  background-color: var(--white);
+  background: var(--text-background);
   border: 1px solid var(--black);
   cursor: pointer;
   border-radius: 5px;
@@ -417,17 +482,129 @@ input:checked+.slider:before {
   fill: #D11A2A;
 }
 
+.dropdown-left{
+  display: flex;
+  float: left;
+  margin-top: -15px;
+}
+
+.dropdown2 {
+  background: #4CAF50;
+  position: absolute;
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px 0;
+  width: 75px;
+  font-weight: bold;
+  height: 35px;
+  margin-top: 5px;
+  color: var(--white);
+  border: 1px solid #4CAF50;
+  cursor: pointer;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.dropdown2:hover {
+  border: 1px solid #4CAF50;
+  background: var(--white);
+  color: #4CAF50;
+}
+
+.dropdown2-icon {
+  fill: var(--white);
+  margin-top: -3px;
+  padding-right: 0.5rem;
+  width: 18px;
+  margin-right: 5px;
+  float: right;
+}
+
+.dropdown2:hover .dropdown2-icon {
+  fill: #4CAF50;
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  font-size: 16px;
+  padding: 9px 0;
+  width: 25%;
+  height: 40px;
+  margin-top: 5px;
+  color: var(--black);
+  background: var(--text-background);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: -12.5%;
+}
+
+.dropdown2-content,
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--text-background);
+  border: 1px solid var(--black);
+  min-width: 100%;
+  width: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 12px;
+  border-radius: 8px;
+  z-index: 2;
+  margin-top: 5px;
+}
+
+.dropdown2-content p,
+.dropdown-content p {
+  font-size: 15px;
+  margin: 0 0 0px; 
+}
+
+.dropdown2-content p:hover,
+.dropdown-content p:hover {
+  background: var(--text-background);
+  border-right: 3px solid var(--main-colour);
+}
+
+.dropdown:hover{
+  background: var(--white);
+}
+
+.dropdown2:hover .dropdown2-content,
+.dropdown:hover .dropdown-content {
+  display: block;
+  background: var(--white);
+}
+
+.dropdown-icon {
+  fill: var(--black);
+  margin-top: -3px;
+  padding-right: 0.5rem;
+  width: 18px;
+  margin-right: 5px;
+  float: right;
+}
+
 @media screen and (max-width: 1080px) {
+
+  .inputBox-dob .inputBox-field,
+  .inputBox-csn .inputBox-field,
+  .inputBox-middle .inputBox-field,
+  .inputBox-last .inputBox-field,
+  .inputBox-first .inputBox-field,
   .inputBox .inputBox-field {
-    height: 30px;
+    height: 35px;
   }
 
-  .select {
-    padding: 5px 0;
-    font-size: 16px;
-  }
-
-  .select option {
-    font-size: 16px;
+  .inputBox-dob .inputBox-field~span,
+  .inputBox-csn .inputBox-field~span,
+  .inputBox-middle .inputBox-field~span,
+  .inputBox-last .inputBox-field~span,
+  .inputBox-first .inputBox-field~span,
+  .inputBox .inputBox-field~span {
+    transform: translateX(10px) translateY(3px);
+    font-size: 11px;
   }
 }

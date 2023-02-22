@@ -16,41 +16,57 @@
                             <input class="inputBox-field" type="text" required="required">
                             <span>Image URL</span>
                         </div>
-                        <div class="inputBox">
-                            <input class="inputBox-field" type="text" required="required">
-                            <span>FullName</span>
+                        <div class="inputBox-align">
+                            <div class="inputBox-first">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>Firstname</span>
+                            </div>
+                            <div class="inputBox-middle">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>Infix</span>
+                            </div>
+                            <div class="inputBox-last">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>Lastname</span>
+                            </div>
                         </div>
-                        <div class="inputBox">
-                            <input class="inputBox-field" type="text" required="required">
-                            <span>DateOfBirth</span>
+                        <div class="inputBox-align">
+                            <div class="inputBox-dob">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>DateOfBirth</span>
+                            </div>
+                            <div class="inputBox-csn">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>CitizenServiceNumber</span>
+                            </div>
                         </div>
-                        <div class="inputBox">
-                            <input class="inputBox-field" type="text" required="required">
-                            <span>CitizenServiceNumber</span>
-                        </div>
-                        <div class="inputBox">
-                            <input class="inputBox-field" type="text" required="required">
-                            <span>Adress</span>
-                        </div>
-                        <div class="inputBox">
-                            <input class="inputBox-field" type="text" required="required">
-                            <span>PhoneNumber</span>
+                        <div class="inputBox-align">
+                            <div class="inputBox-dob">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>Adress</span>
+                            </div>
+                            <div class="inputBox-csn">
+                                <input class="inputBox-field" type="text" required="required">
+                                <span>Phone</span>
+                            </div>
                         </div>
                         <div class="inputBox">
                             <input class="inputBox-field" type="text" required="required">
                             <span>Email</span>
                         </div>
 
-                        <div class="inputBox">
-                            <div class="select-menu">
-                                <select class="select" id="ddlselect" v-on:change="setRank()">
-                                    <option value="" selected disabled>Select rank</option>
-                                    <option value="stagier">Stagier</option>
-                                    <option value="chauffeur">Chauffeur</option>
-                                    <option value="nurse">Nurse</option>
-                                    <option value="doctor">Doctor</option>
-                                    <option value="manager">Manager</option>
-                                </select>
+
+                        <div class="dropdown">
+                            <span id="currentrank">Rank</span><span class="dropdown-icon"><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                                </svg></span>
+                            <div class="dropdown-content">
+                                <p v-for="rank in this.Ranks" :key="rank.id" v-on:click="setRank(rank.id, rank.rank)">
+                                    {{ rank.rank }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -60,13 +76,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Specializations</th>
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="specialiazation in this.ActiveSpecs" :key="specialiazation.id">
-                                    <td>{{ specialiazation.spec }}</td>
-                                    <td>
+                                    <td>{{ specialiazation.spec }}
                                         <button v-bind:disabled="enableBtn" class="btn-delete"
                                             v-on:click="removeSpec(specialiazation.id, specialiazation.spec)">
                                             <span class="icon-btn-delete"><svg xmlns="http://www.w3.org/2000/svg"
@@ -79,14 +93,32 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <select class="btn-add" id="ddlspec" v-on:change="setSpec()">
+
+                        <div class="dropdown-left">
+                            <div class="dropdown2">
+                                <span id="ddlspec">Add</span><span class="dropdown2-icon"><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                        <path
+                                            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+                                    </svg></span>
+                                <div class="dropdown2-content">
+                                    <p v-for="spec in this.InactiveSpecs" :key="spec.id"
+                                        v-on:click="setSpec2(spec.id, spec.spec)">
+                                        {{ spec.spec }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <select class="btn-add" id="ddlspec" v-on:change="setSpec()">
                             <option value="" selected disabled>Add</option>
-                            <option 
-                            v-for="specialization in this.InactiveSpecs" 
-                            v-bind:value="[specialization.id, specialization.spec]">
+                            <option v-for="specialization in this.InactiveSpecs"
+                                v-bind:value="[specialization.id, specialization.spec]">
                                 {{ specialization.spec }}
                             </option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <a class="btn-save">
@@ -118,6 +150,7 @@ export default {
         return {
             ActiveSpecs: [],
             InactiveSpecs: [],
+            Ranks: [],
             rank: '',
             spec: '',
         }
@@ -130,12 +163,29 @@ export default {
         this.InactiveSpecs.push({ id: '4', spec: 'toet1' })
         this.InactiveSpecs.push({ id: '5', spec: 'toet2' })
         this.InactiveSpecs.push({ id: '6', spec: 'toet3' })
+        this.InactiveSpecs.push({ id: '7', spec: 'handbalmachine' })
+
+        this.Ranks.push({ id: '1', rank: 'Intern' })
+        this.Ranks.push({ id: '2', rank: 'Driver' })
+        this.Ranks.push({ id: '3', rank: 'Nurse' })
+        this.Ranks.push({ id: '4', rank: 'Doctor' })
+        this.Ranks.push({ id: '5', rank: 'Manager' })
     },
-    emits: ["changeEditEmployeeDetailsComponent"],
+    emits: [
+        "changeEditEmployeeDetailsComponent"
+    ],
     methods: {
-        setRank() {
-            this.rank = document.getElementById("ddlselect").value;
-            console.log(this.rank)
+        setRank(id, rank) {
+            console.log(id, rank)
+
+            document.getElementById('currentrank').innerHTML = rank;
+        },
+        setSpec2(id, spec) {
+            this.ActiveSpecs.push({ id: id, spec: spec })
+            document.getElementById("ddlspec").selectedIndex = "Add";
+
+            let newList = this.InactiveSpecs.filter((el) => el.id !== id);
+            this.InactiveSpecs = newList;
         },
         setSpec() {
             var item = document.getElementById("ddlspec").value;

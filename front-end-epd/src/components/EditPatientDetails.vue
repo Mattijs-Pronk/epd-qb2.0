@@ -14,35 +14,49 @@
                     <input class="inputBox-field" type="text" required="required">
                     <span>Image URL</span>
                 </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text" required="required">
-                    <span>FullName</span>
+                <div class="inputBox-align">
+                    <div class="inputBox-first">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Firstname</span>
+                    </div>
+                    <div class="inputBox-middle">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Infix</span>
+                    </div>
+                    <div class="inputBox-last">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Lastname</span>
+                    </div>
                 </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text" required="required">
-                    <span>DateOfBirth</span>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>DateOfBirth</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>CitizenServiceNumber</span>
+                    </div>
                 </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text" required="required">
-                    <span>CitizenServiceNumber</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text" required="required">
-                    <span>Adress</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text" required="required">
-                    <span>PhoneNumber</span>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Adress</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Phone</span>
+                    </div>
                 </div>
                 <div class="inputBox">
                     <input class="inputBox-field" type="text" required="required">
                     <span>Email</span>
                 </div>
-                    <p2 class="details">Insured:</p2><br />
-                    <label class="switch">
-                        <input type="checkbox" id="isadmin">
-                        <span class="slider round"></span>
-                    </label>
+                <p2 class="details">Insured:</p2><br />
+                <label class="switch">
+                    <input type="checkbox" id="isadmin">
+                    <span class="slider round"></span>
+                </label>
                 <br />
                 <a class="btn-save">
                     <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +82,9 @@
 
 <script>
 export default {
-    emits: ["changeEditPatientDetailsComponent"],
+    emits: [
+        "changeEditPatientDetailsComponent"
+    ],
     methods: {
         closeEditPatientDetails() {
             this.$emit('changeEditPatientDetailsComponent', true)
@@ -78,4 +94,6 @@ export default {
 </script>
 
 
-<style scoped>@import '../styles/components/editpatientdetails.css';</style>
+<style scoped>
+@import '../styles/components/editpatientdetails.css';
+</style>

@@ -7,6 +7,7 @@ import DeleteRecord from './DeleteRecord.vue'
 <template>
   <Searchbar />
   <section id="background">
+    <div class="container">
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -146,6 +147,7 @@ import DeleteRecord from './DeleteRecord.vue'
         </tr>
     </tbody>
   </table>
+</div>
 </section>
 
 <component :is="compToRender" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"

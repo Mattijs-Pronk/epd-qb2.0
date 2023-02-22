@@ -14,31 +14,45 @@
                 </p><br />
 
                 <div class="inputBox">
-                    <input class="inputBox-field" type="text">
+                    <input class="inputBox-field" type="text" required="required">
                     <span>Image URL</span>
                 </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>FullName</span>
+                <div class="inputBox-align">
+                    <div class="inputBox-first">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Firstname</span>
+                    </div>
+                    <div class="inputBox-middle">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Infix</span>
+                    </div>
+                    <div class="inputBox-last">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Lastname</span>
+                    </div>
+                </div>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>DateOfBirth</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>CitizenServiceNumber</span>
+                    </div>
+                </div>
+                <div class="inputBox-align">
+                    <div class="inputBox-dob">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Adress</span>
+                    </div>
+                    <div class="inputBox-csn">
+                        <input class="inputBox-field" type="text" required="required">
+                        <span>Phone</span>
+                    </div>
                 </div>
                 <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>DateOfBirth</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>CitizenServiceNumber</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>Adress</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
-                    <span>PhoneNumber</span>
-                </div>
-                <div class="inputBox">
-                    <input class="inputBox-field" type="text">
+                    <input class="inputBox-field" type="text" required="required">
                     <span>Email</span>
                 </div>
                 <a class="btn-save">

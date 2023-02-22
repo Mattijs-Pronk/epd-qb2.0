@@ -14,21 +14,24 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.container .box hr{
-  color: var(--black);
+section {
+  margin-left: 225px;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .container {
-  z-index: 2;
   position: fixed;
-  text-align: center;
-  width: 50%;
-  top: 58.5%;
-  margin-left: 50%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  border-radius: 1rem;
-  box-shadow: var(--box-shadow);
+  width: 70%;
+  top: 95px;
+  height: 85%;
+  overflow-y: auto;
+}
+
+.container .box hr {
+  color: var(--black);
 }
 
 .box {
@@ -163,6 +166,7 @@
   font-size: 1rem;
   margin-top: 12px;
   margin-bottom: 12px;
+  color: var(--black);
   background-color: var(--text-background);
 }
 
@@ -209,7 +213,8 @@
   margin-top: 12px;
   margin-bottom: 12px;
   resize: none;
-  background-color: var(--text-background);
+  color: var(--black);
+  background: var(--text-background);
 }
 
 .inputBox-field-textarea:hover,
@@ -225,7 +230,7 @@
   font-size: 1.5rem;
   text-transform: uppercase;
   transition: 0.5s;
-  
+
 }
 
 .inputBox-textarea .inputBox-field-textarea~span,

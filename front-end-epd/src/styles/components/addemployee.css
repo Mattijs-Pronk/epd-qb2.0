@@ -1,196 +1,341 @@
 :root {
-    --main-colour: #10BBE5;
-    --secundary-colour: #EEA47FFF;
-    --white: #fff;
-    --text-background: #fff;
-    --black: #000000;
-    --background: #ccc;
-    --darkbackground: #383838;
+  --main-colour: #10BBE5;
+  --secundary-colour: #EEA47FFF;
+  --white: #fff;
+  --text-background: #fff;
+  --black: #000000;
+  --background: #ccc;
+  --darkbackground: #383838;
 }
 
 * {
-    text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 section {
-    margin-left: 225px;
-    margin-right: 0;
-    min-height: 100vh;
-    padding: 80px 1%;
-    background: var(--background);
-    display: flex;
-    justify-content: center;
+  margin-left: 225px;
+  margin-right: 0;
+  min-height: 100vh;
+  padding: 100px 1%;
+  background: var(--background);
+  display: flex;
+  justify-content: center;
 
 }
 
 .container {
-    width: 97%;
-    margin-top: 25px;
-    background: var(--background);
+  margin-top: 0;
+  background: var(--background);
 }
 
 .container .box hr {
-    color: var(--black);
+  color: var(--black);
 }
 
 .box {
-    padding: 1.5rem;
-    background: var(--white);
-    border-radius: .5rem;
-    border-left: 4px solid var(--main-colour);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
-    overflow: hidden;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: .5rem;
+  border-left: 4px solid var(--main-colour);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
+  width: 100%;
+  display: inline-block;
 }
 
 .box h1 {
-    text-align: center;
-    letter-spacing: 1px;
-    margin: 5px 0;
-    font-size: 40px;
-    font-weight: bolder;
-    color: var(--black);
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 5px 0;
+  font-size: 40px;
+  font-weight: bolder;
+  color: var(--black);
 }
 
 .box p {
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--black);
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--black);
 }
 
 .details {
-    font-size: 16px;
-    font-weight: bold;
-    word-wrap: break-word
+  font-size: 16px;
+  font-weight: bold;
+  word-wrap: break-word
 }
 
 .icon {
-    fill: var(--main-colour);
-    width: 16px;
-    display: inline-block;
+  fill: var(--main-colour);
+  width: 16px;
+  display: inline-block;
 }
 
 .btn-save {
-    float: right;
-    background: #4CAF50;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    color: var(--white);
-    font-size: 16px;
-    padding: 10px 20px;
-    letter-spacing: 1px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 20px;
-    text-decoration: none;
+  float: right;
+  background: #4CAF50;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  color: var(--white);
+  font-size: 16px;
+  padding: 10px 20px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 20px;
+  text-decoration: none;
 }
 
 .btn-save:hover {
-    background: var(--white);
-    color: #4CAF50;
-    border: 1px solid #4CAF50;
-    transform: scale(1.05);
+  background: var(--white);
+  color: #4CAF50;
+  border: 1px solid #4CAF50;
+  transform: scale(1.05);
 }
 
 .icon-btn-save {
-    fill: var(--white);
-    width: 16px;
-    display: inline-block;
+  fill: var(--white);
+  width: 16px;
+  display: inline-block;
 }
 
 .btn-save:hover .icon-btn-save {
-    fill: #4CAF50;
+  fill: #4CAF50;
+}
+
+.inputBox-align {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  display: flex;
+  margin-top: 10px;
+}
+
+.inputBox-first {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-right: 20px;
+}
+
+.inputBox-middle {
+  margin: auto;
+  position: relative;
+  width: 20%;
+}
+
+.inputBox-last {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-left: 20px;
+}
+
+.inputBox-dob {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-right: 10px;
+  margin-left: 50px;
+}
+
+.inputBox-csn {
+  margin: auto;
+  position: relative;
+  width: 50%;
+  margin-left: 10px;
+  margin-right: 50px;
 }
 
 .inputBox {
-    margin: auto;
-    position: relative;
-    width: 60%;
+  margin: auto;
+  position: relative;
+  width: 60%;
 }
 
+.inputBox-dob .inputBox-field,
+.inputBox-csn .inputBox-field,
+.inputBox-middle .inputBox-field,
+.inputBox-last .inputBox-field,
+.inputBox-first .inputBox-field,
 .inputBox .inputBox-field {
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    border: 1px solid var(--black);
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-top: 12px;
-    margin-bottom: 12px;
-    background-color: var(--text-background);
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: var(--text-background);
+  color: var(--black);
 }
 
 .inputBox-field:hover,
 .inputBox-field:focus {
-    background-color: var(--white);
+  background-color: var(--white);
 }
 
+.inputBox-dob span,
+.inputBox-csn span,
+.inputBox-middle span,
+.inputBox-last span,
+.inputBox-first span,
 .inputBox span {
-    position: absolute;
-    left: 0;
-    padding: 10px;
-    pointer-events: none;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    transition: 0.5s;
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  transition: 0.5s;
 }
 
-.inputBox .inputBox-field~span,
+.inputBox-dob .inputBox-field~span,
+.inputBox-csn .inputBox-field~span,
+.inputBox-middle .inputBox-field~span,
+.inputBox-last .inputBox-field~span,
+.inputBox-first .inputBox-field~span,
 .inputBox .inputBox-field~span {
-    color: var(--black);
-    transform: translateX(10px) translateY(-1px);
-    background: var(--white);
-    font-size: 13px;
-    padding: 0 10px;
-    letter-spacing: 0.5px;
-    border-radius: 10px;
+  color: var(--black);
+  transform: translateX(10px) translateY(-1px);
+  background: var(--white);
+  font-size: 13px;
+  padding: 0 10px;
+  letter-spacing: 0.5px;
+  border-radius: 10px;
+}
+
+.details {
+  color: var(--black);
 }
 
 
 .select-menu {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
 }
 
 .select {
-    font-size: 18px;
-    padding: 11px 0;
-    width: 30%;
-    color: var(--black);
-    background-color: var(--white);
-    border: 1px solid var(--black);
-    cursor: pointer;
-    border-radius: 5px;
+  font-size: 18px;
+  padding: 11px 0;
+  width: 30%;
+  color: var(--black);
+  background-color: var(--text-background);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .select:focus,
 .select:hover {
-    outline: none;
-    border: 1px solid var(--main-colour);
+  outline: none;
+  border: 1px solid var(--main-colour);
 }
 
 .select option {
-    text-align: left;
-    font-size: 18px;
-    background-color: var(--white);
+  text-align: left;
+  font-size: 18px;
+  background-color: var(--white);
+}
+
+.dropdown-center {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown {
+  position: absolute;
+  display: inline-block;
+  font-size: 16px;
+  padding: 9px 0;
+  width: 15%;
+  height: 40px;
+  margin-top: 5px;
+  color: var(--black);
+  background: var(--text-background);
+  border: 1px solid var(--black);
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.dropdown2-content,
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--text-background);
+  border: 1px solid var(--black);
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 12px;
+  border-radius: 8px;
+  z-index: 2;
+  margin-top: 5px;
+}
+
+.dropdown2-content p,
+.dropdown-content p {
+  font-size: 15px;
+  margin: 0 0 0px;
+}
+
+.dropdown2-content p:hover,
+.dropdown-content p:hover {
+  background: var(--text-background);
+  border-right: 3px solid var(--main-colour);
+}
+
+.dropdown:hover {
+  background: var(--white);
+}
+
+.dropdown2:hover .dropdown2-content,
+.dropdown:hover .dropdown-content {
+  display: block;
+  background: var(--white);
+}
+
+.dropdown-icon {
+  fill: var(--black);
+  margin-top: -3px;
+  padding-right: 0.5rem;
+  width: 18px;
+  margin-right: 5px;
+  float: right;
 }
 
 @media screen and (max-width: 1080px) {
-    .inputBox .inputBox-field {
-        height: 30px;
-    }
 
-    .select {
-        padding: 5px 0;
-        font-size: 16px;
-    }
+  .inputBox-dob .inputBox-field,
+  .inputBox-csn .inputBox-field,
+  .inputBox-middle .inputBox-field,
+  .inputBox-last .inputBox-field,
+  .inputBox-first .inputBox-field,
+  .inputBox .inputBox-field {
+    height: 35px;
+  }
 
-    .select option {
-        font-size: 16px;
-    }
+  .inputBox-dob .inputBox-field~span,
+  .inputBox-csn .inputBox-field~span,
+  .inputBox-middle .inputBox-field~span,
+  .inputBox-last .inputBox-field~span,
+  .inputBox-first .inputBox-field~span,
+  .inputBox .inputBox-field~span {
+    transform: translateX(10px) translateY(3px);
+    font-size: 11px;
+  }
+
+  .select {
+    padding: 5px 0;
+    font-size: 16px;
+  }
+
+  .select option {
+    font-size: 16px;
+  }
 }
