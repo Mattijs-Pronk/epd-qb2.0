@@ -45,7 +45,6 @@ section {
 .box2 img {
     width: 200px;
     border-radius: 20%;
-    border: 2px solid var(--main-colour);
 }
 
 .box2 h1 {
@@ -132,9 +131,15 @@ section {
     display: inline-block;
 }
 
-.icon-insured {
+.icon-insured-true {
     fill: #4CAF50;
-    width: 16px;
+    width: 22px;
+    display: inline-block;
+}
+
+.icon-insured-false {
+    fill: #D11A2A;
+    width: 22px;
     display: inline-block;
 }
 

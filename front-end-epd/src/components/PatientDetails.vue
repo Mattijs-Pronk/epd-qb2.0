@@ -3,20 +3,24 @@ import EditPatientDetails from './EditPatientDetails.vue';
 import EditMedicine from './EditMedicine.vue';
 import EditDescription from './EditDescription.vue';
 import AddPatientHistory from './AddPatientHistory.vue';
+import Alert from './Alert.vue';
+
+import { GetPatientById } from '../assets/Patient';
 </script>
 
 <template>
-    <section v-if="getPatientdetails">
+    <Alert ref="alertComp"/>
+    <section>
         <div class="container" id="background">
             <div class="box2">
-                <h1>Patient Dossier</h1> 
+                <h1>Patient Dossier</h1>
                 <button v-bind:disabled="enableBtn" class="btn-return" v-on:click="switchActiveComponent()">
-                <span class="icon-btn-return"><svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                        <path
-                            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
-                    </svg></span>
-            </button>
+                    <span class="icon-btn-return"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
+                        </svg></span>
+                </button>
                 <hr />
                 <p class="p-trunc">
                     <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
@@ -27,31 +31,42 @@ import AddPatientHistory from './AddPatientHistory.vue';
                     Patient details:
                 </p>
 
-                <img src="../components/icons/hasbullah.png" alt="image"><br /><br />
+                <div v-if="Patient.imageUrl">
+                    <img class="img" :src="Patient.imageUrl">
+                </div>
+                <div v-else>
+                    <img class="img" src="./icons/stockprofileImage.png">
+                </div><br /><br />
                 <p1 class="description">
-                    <p2 class="details">Name:</p2> Hasbulla Magomedov
+                    <p2 class="details">Name: {{ Patient.firstName }} {{ Patient.infix }} {{ Patient.lastName }}</p2>
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">DOB:</p2> 10-02-2023
+                    <p2 class="details">DOB:</p2> {{ Patient.dateOfBirth }}
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">CSN:</p2> 128239812398823
+                    <p2 class="details">CSN:</p2> {{ Patient.citizenServiceNumber }}
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">Insured:</p2> <span class="icon-insured"><svg xmlns="http://www.w3.org/2000/svg"
+                    <p2 class="details">Insured: </p2>
+                    <span v-if="Patient.insured" class="icon-insured-true"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
-                                d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
+                        </svg></span>
+                    <span v-else class="icon-insured-false"><svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M175 175C184.4 165.7 199.6 165.7 208.1 175L255.1 222.1L303 175C312.4 165.7 327.6 165.7 336.1 175C346.3 184.4 346.3 199.6 336.1 208.1L289.9 255.1L336.1 303C346.3 312.4 346.3 327.6 336.1 336.1C327.6 346.3 312.4 346.3 303 336.1L255.1 289.9L208.1 336.1C199.6 346.3 184.4 346.3 175 336.1C165.7 327.6 165.7 312.4 175 303L222.1 255.1L175 208.1C165.7 199.6 165.7 184.4 175 175V175zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
                         </svg></span>
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">Adress:</p2>
+                    <p2 class="details">Adress:</p2> {{ Patient.adress }}
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">Phone:</p2> 06 4929201
+                    <p2 class="details">Phone:</p2> {{ Patient.phoneNumber }}
                 </p1><br />
                 <p1 class="description">
-                    <p2 class="details">Email:</p2>
+                    <p2 class="details">Email:</p2> {{ Patient.email }}
                 </p1><br />
                 <p1 class="description">
                     <p2 class="details">Hospital:</p2> Pillbox medical
@@ -78,7 +93,8 @@ import AddPatientHistory from './AddPatientHistory.vue';
                     Medicine:
                 </p>
                 <p1 class="description">
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
+                    classical
                     Latin literature from 45 BC, making it over 2000 years old. Richard McClintocksick
                 </p1><br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditMedicine()">
@@ -102,8 +118,10 @@ import AddPatientHistory from './AddPatientHistory.vue';
                     Description:
                 </p>
                 <p1 class="description">
-                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                    It is a long established fact that a reader will be distracted by the readable content of a page
+                    when
+                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                    distribution
                     of letters, as opposed to using 'Content here, content here', making it look like readable English.
                 </p1><br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditDescription()">
@@ -210,8 +228,11 @@ import AddPatientHistory from './AddPatientHistory.vue';
         </div>
     </section>
 
-    <component :is="compToRender" 
-        :getEditPatientdetailsComp="setEditPatientdetailsComp" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
+    <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp"
+
+        v-on:updatePatientDetails="updateSuccesfull()"
+
+        v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
         v-on:changeEditMedicineComponent="closeEditMedicine()" 
         v-on:changeEditDescriptionComponent="closeEditDescription()"
         v-on:changeAddHistoryComponent="closeAddHistory()">
@@ -224,7 +245,20 @@ export default {
         return {
             compToRender: '',
             enableBtn: false,
-            current: this.getPatientdetails,
+
+            Patient: {
+                id: '',
+                imageUrl: '',
+                firstName: '',
+                infix: '',
+                lastName: '',
+                dateOfBirth: '',
+                citizenServiceNumber: '',
+                adress: '',
+                phoneNumber: '',
+                email: '',
+                insured: ''
+            },
 
             setEditPatientdetailsComp: false
         }
@@ -236,11 +270,14 @@ export default {
         AddPatientHistory
     },
     props: [
-        'getPatientdetails'
+        'patientId'
     ],
     emits: [
         "changePatientDetailsComponent"
     ],
+    async mounted() {
+        this.Patient = await GetPatientById(this.patientId);
+    },
     methods: {
         switchActiveComponent() {
             this.$emit('changePatientDetailsComponent', true)
@@ -288,9 +325,16 @@ export default {
             this.enableBtn = true;
             this.compToRender = 'AddPatientHistory';
             document.getElementById('background').style.filter = 'blur(7px)'
-        }
+        },
+        updateSuccesfull() {
+            const id = 1;
+            const message = 'Patient details have been updated';
+            this.$refs.alertComp.succesAlert(id, message);
+        },
     }
 }
 </script>
 
-<style scoped>@import '../styles/components/patientdetails.css';</style>
+<style scoped>
+@import '../styles/components/patientdetails.css';
+</style>

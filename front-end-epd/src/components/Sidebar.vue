@@ -11,7 +11,6 @@ import ManageEmployees from './ManageEmployees.vue';
 <template>
     <div class="wrapper">
         <div class="sidebar">
-
             <div class="navigation">
                 <p>NAVIGATION</p>
             </div>
@@ -189,7 +188,9 @@ import ManageEmployees from './ManageEmployees.vue';
         </div>
     </div>
 
-    <component :is="compToRender" :getPatientdetails="setPatientdetails"></component>
+    <component :is="compToRender" :getPatientdetails="setPatientdetails"
+    v-on:updatePatientDetails="test()"
+    ></component>
 </template>
 
 <script>
@@ -246,6 +247,9 @@ export default {
                 document.getElementById("tags").style.display = "block"
             }
         },
+        test(){
+            console.log('test')
+        }
     }
 }
 </script>

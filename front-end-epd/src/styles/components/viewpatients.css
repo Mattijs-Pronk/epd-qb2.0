@@ -110,8 +110,9 @@ section {
     color: var(--black);
 }
 
-.items .box-container .box img {
-    width: 100px;
+.img {
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
 }
 
