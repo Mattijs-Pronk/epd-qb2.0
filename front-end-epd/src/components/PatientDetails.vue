@@ -3,14 +3,12 @@ import EditPatientDetails from './EditPatientDetails.vue';
 import EditMedicine from './EditMedicine.vue';
 import EditDescription from './EditDescription.vue';
 import AddPatientHistory from './AddPatientHistory.vue';
-import Alert from './Alert.vue';
 
 import { GetPatientById } from '../assets/Patient';
 </script>
 
 <template>
-    <Alert ref="alertComp"/>
-    <section>
+    <section v-if="getpatientdetails">
         <div class="container" id="background">
             <div class="box2">
                 <h1>Patient Dossier</h1>
@@ -36,7 +34,7 @@ import { GetPatientById } from '../assets/Patient';
                 </div>
                 <div v-else>
                     <img class="img" src="./icons/stockprofileImage.png">
-                </div><br /><br />
+                </div><br/>
                 <p1 class="description">
                     <p2 class="details">Name: {{ Patient.firstName }} {{ Patient.infix }} {{ Patient.lastName }}</p2>
                 </p1><br />
@@ -229,12 +227,8 @@ import { GetPatientById } from '../assets/Patient';
     </section>
 
     <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp"
-
-        v-on:updatePatientDetails="updateSuccesfull()"
-
-        v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
-        v-on:changeEditMedicineComponent="closeEditMedicine()" 
-        v-on:changeEditDescriptionComponent="closeEditDescription()"
+        v-on:updatePatientDetails="updateSuccesfull()" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
+        v-on:changeEditMedicineComponent="closeEditMedicine()" v-on:changeEditDescriptionComponent="closeEditDescription()"
         v-on:changeAddHistoryComponent="closeAddHistory()">
     </component>
 </template>
@@ -270,13 +264,15 @@ export default {
         AddPatientHistory
     },
     props: [
-        'patientId'
+        'patientId',
+        'getpatientdetails'
     ],
     emits: [
         "changePatientDetailsComponent"
     ],
     async mounted() {
         this.Patient = await GetPatientById(this.patientId);
+        window.scrollTo(0, 0);
     },
     methods: {
         switchActiveComponent() {
@@ -325,11 +321,6 @@ export default {
             this.enableBtn = true;
             this.compToRender = 'AddPatientHistory';
             document.getElementById('background').style.filter = 'blur(7px)'
-        },
-        updateSuccesfull() {
-            const id = 1;
-            const message = 'Patient details have been updated';
-            this.$refs.alertComp.succesAlert(id, message);
         },
     }
 }

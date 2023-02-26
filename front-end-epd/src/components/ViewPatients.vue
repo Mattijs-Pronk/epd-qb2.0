@@ -9,8 +9,8 @@ import { GetAllPatients } from '../assets/Patient';
     <Searchbar v-if="viewpatients" />
     <section class="items" v-if="viewpatients">
 
-        <div class="box-container" v-for="patient in PatientList" :key="patient.id">
-            <div class="box">
+        <div class="box-container">
+            <div class="box" v-for="patient in PatientList" :key="patient.id">
 
                 <div v-if="patient.imageUrl">
                     <img class="img" :src="patient.imageUrl">
@@ -46,7 +46,7 @@ import { GetAllPatients } from '../assets/Patient';
         </div>
     </section>
 
-    <component :is="compToRender" :key="componentKey" :patientId="currentPatientId" :getPatientdetails="setPatientdetails" v-on:changePatientDetailsComponent="switchActiveComponent()"></component>
+    <component :getpatientdetails="setPatientdetails" :is="compToRender" :key="componentKey" :patientId="currentPatientId" :getPatientdetails="setPatientdetails" v-on:changePatientDetailsComponent="switchActiveComponent()"></component>
 </template>
 
 

@@ -1,3 +1,7 @@
+<script setup>
+import { AlertMessage } from '../assets/global';
+</script>
+
 <template>
     <section>
         <div class="container">   
@@ -92,7 +96,9 @@ export default {
             this.$emit('changeEditPatientDetailsComponent', true)
         },
         updatePatientDetails(){
-            this.$emit('updatePatientDetails', true)
+            const id = 1;
+            const message = 'Patient details have been updated';
+            AlertMessage(id, message);
         }
     }
 }

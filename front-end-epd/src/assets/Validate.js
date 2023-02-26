@@ -43,7 +43,7 @@ export const checkLastName = (lastname) => {
 export const checkDateOfBirth = (dob) => {
     const error = dob.length == 0 ? 'DOB cannot be empty' :
         dob.length > 10 ? 'DOB is too long'
-            : (validateDateOfBirth(dob) ? '' : 'example: (31/12/2023)')
+            : (validateDateOfBirth(dob) ? '' : 'example: (01/01/0001)')
     return error;
 };
 
@@ -52,7 +52,7 @@ export const validateDateOfBirth = (dob) => {
         return reDate.test(dob);
     }
     else{
-        return true
+        return false
     }
 };
 

@@ -188,9 +188,7 @@ import ManageEmployees from './ManageEmployees.vue';
         </div>
     </div>
 
-    <component :is="compToRender" :getPatientdetails="setPatientdetails"
-    v-on:updatePatientDetails="test()"
-    ></component>
+    <component :is="compToRender" :getPatientdetails="setPatientdetails"></component>
 </template>
 
 <script>
@@ -247,9 +245,6 @@ export default {
                 document.getElementById("tags").style.display = "block"
             }
         },
-        test(){
-            console.log('test')
-        }
     }
 }
 </script>

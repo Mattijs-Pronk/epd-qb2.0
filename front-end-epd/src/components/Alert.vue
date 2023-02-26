@@ -1,6 +1,6 @@
 <template>
     <div v-if="activeClass == 1" class="middle" id="success-alert">
-        <div class="alert alert-success alert-dismissible fade show">
+        <div class="alert alert-success" v-on:click="closeAlert()">
             <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { currentAlert } from '../assets/global'
 export default {
     data() {
         return {
@@ -19,11 +20,14 @@ export default {
             message: '',
         }
     },
-    props: {
-        
+    mounted() {
+        window.addEventListener('Alert', () => {
+            var obj = currentAlert;
+            this.setAlert(obj.id, obj.message)
+        })
     },
     methods: {
-        succesAlert(id, message) {
+        setAlert(id, message) {
             this.activeClass = id;
             this.message = message;
 
@@ -35,10 +39,13 @@ export default {
                 this.timer = null;
             }
             this.timer = setTimeout(async () => {
-                this.activeClass = 0;
+                this.closeAlert();
 
             }, 3500);
-        }
+        },
+        closeAlert() {
+            this.activeClass = 0;
+        },
     }
 }
 </script>
@@ -48,9 +55,10 @@ export default {
     --main-colour: #10BBE5;
     --secundary-colour: #EEA47FFF;
     --white: #fff;
+    --text-background: #E8E8E8;
     --black: #000000;
-    --background: #eee;
-    --darkbackground: #181818;
+    --background: #ccc;
+    --darkbackground: #383838;
 }
 
 .middle {
@@ -58,6 +66,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .icon {
@@ -65,6 +74,13 @@ export default {
     margin-right: 5px;
     margin-left: -5px;
     fill: var(--main-colour);
+}
+
+.icon-close {
+    width: 12px;
+    margin-left: 15px;
+    margin-right: -5px;
+    fill: 	#A9A9A9;
 }
 
 .alert {
@@ -80,6 +96,5 @@ export default {
 }
 
 .alert-success {
-    border: 1px solid green;
-}
-</style>
+    border: 1px solid #4CAF50;
+}</style>
