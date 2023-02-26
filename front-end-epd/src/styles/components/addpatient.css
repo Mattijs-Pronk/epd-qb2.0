@@ -167,6 +167,12 @@ section {
   width: 60%;
 }
 
+::-webkit-calendar-picker-indicator{
+  background-color: var(--main-colour);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .inputBox-dob .inputBox-field,
 .inputBox-csn .inputBox-field,
 .inputBox-middle .inputBox-field,

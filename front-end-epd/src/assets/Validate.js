@@ -1,7 +1,7 @@
 const reName = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]*$/;
 const reEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 const reCsn = /^\d+$/;
-const reDate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+const reDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
 const reImg = /^(https?:\/\/.*\.(?:png))/;
 
 
@@ -9,16 +9,16 @@ const reImg = /^(https?:\/\/.*\.(?:png))/;
 
 //image checker
 export const checkImg = (img) => {
-    if(img == null){
+    if (img == null) {
         img = ''
     }
     const error = img.length < 1 ? '' :
-    (validateImg(img) ? '' : 'Not a correct link')
+        (validateImg(img) ? '' : 'Not a correct link')
     return error;
 };
 
 export const validateImg = (img) => {
-    if(img == null){
+    if (img == null) {
         return true
     }
     return reImg.test(img);
@@ -41,17 +41,16 @@ export const checkLastName = (lastname) => {
 
 //date of birth checker
 export const checkDateOfBirth = (dob) => {
-    const error = dob.length == 0 ? 'DOB cannot be empty' :
-        dob.length > 10 ? 'DOB is too long'
-            : (validateDateOfBirth(dob) ? '' : 'example: (01/01/0001)')
+    const error = dob.length > 10 ? 'DOB is too long'
+            : (validateDateOfBirth(dob) ? '' : 'example: (01-01-0001)')
     return error;
 };
 
 export const validateDateOfBirth = (dob) => {
-    if(dob.length > 9){
+    if (dob.length > 9) {
         return reDate.test(dob);
     }
-    else{
+    else {
         return false
     }
 };
@@ -74,16 +73,16 @@ export const validateCitizenServieNumber = (csn) => {
 
 //email checker
 export const checkEmail = (email) => {
-    if(email == null){
+    if (email == null) {
         email = ''
     }
     const error = email.length < 1 ? '' :
-    (validateEmail(email) ? '' : email + ' is not an email.')
+        (validateEmail(email) ? '' : email + ' is not an email.')
     return error;
 };
 
 export const validateEmail = (email) => {
-    if(email == null){
+    if (email == null) {
         return true;
     }
     return reEmail.test(email);

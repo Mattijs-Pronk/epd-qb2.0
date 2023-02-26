@@ -6,7 +6,7 @@ import { GetAllPatients } from '../assets/Patient';
 </script>
 
 <template>
-    <Searchbar v-if="viewpatients" />
+    <Searchbar ref="search" v-if="viewpatients" />
     <section class="items" v-if="viewpatients">
 
         <div class="box-container">
@@ -46,7 +46,8 @@ import { GetAllPatients } from '../assets/Patient';
         </div>
     </section>
 
-    <component :getpatientdetails="setPatientdetails" :is="compToRender" :key="componentKey" :patientId="currentPatientId" :getPatientdetails="setPatientdetails" v-on:changePatientDetailsComponent="switchActiveComponent()"></component>
+    <component :getpatientdetails="setPatientdetails" :is="compToRender" :key="componentKey" :patientId="currentPatientId"
+        :getPatientdetails="setPatientdetails" v-on:changePatientDetailsComponent="switchActiveComponent()"></component>
 </template>
 
 
@@ -66,14 +67,17 @@ export default {
     components: {
         PatientDetails
     },
-    async mounted(){
+    async mounted() {
         this.PatientList = await GetAllPatients();
+
+        // const test = this.PatientList.filter(patient => patient.firstName.includes('te'))
+        // this.PatientList = test;
     },
     methods: {
         switchActiveComponent(id) {
             this.viewpatients = !this.viewpatients
             this.setPatientdetails = !this.setPatientdetails
-            if(id != null){
+            if (id != null) {
                 this.currentPatientId = id;
             }
             this.compToRender = 'PatientDetails'
@@ -84,4 +88,6 @@ export default {
 </script>
 
 
-<style scoped>@import '../styles/components/viewpatients.css';</style>
+<style scoped>
+@import '../styles/components/viewpatients.css';
+</style>

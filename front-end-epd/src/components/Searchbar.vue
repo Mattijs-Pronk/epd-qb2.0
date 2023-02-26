@@ -1,8 +1,8 @@
 <template>
     <div class="patient-search">
         <div class="patient-search-box">
-            <input type="text" class="search-control" placeholder="Name">
-            <button type="submit" class="search-btn">
+            <input type="text" class="search-control" placeholder="Name" v-model="searchPhrase">
+            <button type="submit" class="search-btn" v-on:click="searchPatient()">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path
@@ -12,5 +12,21 @@
         </div>
     </div>
 </template>
+
+<script>
+export default{
+    data(){
+        return{
+            searchPhrase: ''
+        }
+    },
+    methods: {
+        searchPatient(){
+            // const test = this.PatientList.filter(patient => patient.firstName.includes(this.searchPhrase))
+            console.log(this.searchPhrase)
+        }
+    }
+}
+</script>
 
 <style scoped>@import '../styles/components/searchbar.css';</style>

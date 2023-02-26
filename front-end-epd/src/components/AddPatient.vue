@@ -58,7 +58,7 @@ import {
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-dob">
-                            <input class="inputBox-field" type="text" placeholder="dd/mm/yyyy" v-model="dob"
+                            <input class="inputBox-field" type="date" v-model="dob"
                                 @blur="DateOfBirth" @keyup="DateOfBirth">
                             <span>DateOfBirth <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -152,7 +152,7 @@ export default {
             }
         },
         Img() {
-            this.imgError = checkImg(this.img)
+            this.imgError = checkImg(this.img);
         },
         FirstName() {
             this.firstnameError = checkFirstName(this.firstname);
@@ -168,14 +168,6 @@ export default {
         },
         DateOfBirth() {
             this.dobError = checkDateOfBirth(this.dob);
-
-            if (this.dob.length >= this.prevdob) {
-                if (this.dob.length == 2 || this.dob.length == 5) {
-                    this.dob += "/"
-                }
-            }
-
-            this.prevdob = this.dob.length;
         }
     }
 }
