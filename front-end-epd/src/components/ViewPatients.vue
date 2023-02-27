@@ -6,12 +6,11 @@ import { GetAllPatients } from '../assets/Patient';
 </script>
 
 <template>
-    <Searchbar ref="search" v-if="viewpatients" />
+    <Searchbar v-on:searchPatient="searchPatientInList" v-if="viewpatients" />
     <section class="items" v-if="viewpatients">
 
         <div class="box-container">
             <div class="box" v-for="patient in PatientList" :key="patient.id">
-
                 <div v-if="patient.imageUrl">
                     <img class="img" :src="patient.imageUrl">
                 </div>
@@ -43,6 +42,20 @@ import { GetAllPatients } from '../assets/Patient';
                     <span>view</span>
                 </a>
             </div>
+
+            <input type="text" id="myInput" @keyup="myFunction()" placeholder="Search for names..">
+            <ul id="myUL">
+                <li><a href="#">Adele</a></li>
+                <li><a href="#">Agnes</a></li>
+
+                <li><a href="#">Billy</a></li>
+                <li><a href="#">Bob</a></li>
+
+                <li><a href="#">Calvin</a></li>
+                <li><a href="#">Christina</a></li>
+                <li><a href="#">Cindy</a></li>
+            </ul>
+
         </div>
     </section>
 
@@ -69,9 +82,6 @@ export default {
     },
     async mounted() {
         this.PatientList = await GetAllPatients();
-
-        // const test = this.PatientList.filter(patient => patient.firstName.includes('te'))
-        // this.PatientList = test;
     },
     methods: {
         switchActiveComponent(id) {
@@ -82,6 +92,46 @@ export default {
             }
             this.compToRender = 'PatientDetails'
             this.componentKey += 1;
+        },
+        searchPatientInList(searchPhrase) {
+            console.log(searchPhrase)
+            // const result = this.PatientListCurrent.filter(patient => patient.ToLowerCase().includes(searchPhrase))
+
+            let cards = document.querySelectorAll('.box')
+            console.log(cards[1].innerText)
+            // Loop through the cards
+            // for (var i = 0; i < cards.length; i++) {
+            //     // If the text is within the card...
+            //     if (cards[i].innerText.toLowerCase()
+
+            //         // ...and the text matches the search query...
+            //         .includes(searchPhrase.toLowerCase())) {
+            //         // ...remove the `.is-hidden` class.
+            //         cards[i].classList.remove("is-hidden");
+            //     } else {
+            //         // Otherwise, add the class.
+            //         cards[i].classList.add("is-hidden");
+            //     }
+            // }
+        },
+        myFunction() {
+            // Declare variables
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById('myInput');
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName('li');
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
         }
     }
 }
