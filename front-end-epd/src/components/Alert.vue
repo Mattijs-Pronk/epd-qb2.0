@@ -9,6 +9,16 @@
             <strong>{{ message }}</strong>
         </div>
     </div>
+    <div v-if="activeClass == 2" class="middle" id="danger-alert">
+        <div class="alert alert-danger" v-on:click="closeAlert()">
+            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
+                </svg></span>
+            <strong>{{ message }}</strong>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -41,7 +51,7 @@ export default {
             this.timer = setTimeout(async () => {
                 this.closeAlert();
 
-            }, 3500);
+            }, 4000);
         },
         closeAlert() {
             this.activeClass = 0;
@@ -76,13 +86,6 @@ export default {
     fill: var(--main-colour);
 }
 
-.icon-close {
-    width: 12px;
-    margin-left: 15px;
-    margin-right: -5px;
-    fill: 	#A9A9A9;
-}
-
 .alert {
     display: flex;
     align-items: center;
@@ -90,11 +93,15 @@ export default {
     width: auto;
     height: 50px;
     position: fixed;
-    opacity: 0.9;
+    opacity: 0.95;
     top: 85px;
     z-index: 5;
 }
 
 .alert-success {
     border: 1px solid #4CAF50;
+}
+
+.alert-danger {
+    border: 1px solid #f44336;
 }</style>

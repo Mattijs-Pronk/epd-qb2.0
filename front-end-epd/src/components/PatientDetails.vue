@@ -1,10 +1,13 @@
 <script setup>
 import EditPatientDetails from './EditPatientDetails.vue';
-import EditMedicine from './EditMedicine.vue';
-import EditDescription from './EditDescription.vue';
+import EditMedicine from './EditPatientMedicine.vue';
+import EditDescription from './EditPatientDescription.vue';
 import AddPatientHistory from './AddPatientHistory.vue';
 
-import { GetPatientById } from '../assets/Patient';
+import { 
+    GetPatientById, getPatientHistoryById 
+}
+from '../assets/Patient';
 </script>
 
 <template>
@@ -36,7 +39,7 @@ import { GetPatientById } from '../assets/Patient';
                     <img class="img" src="./icons/stockprofileImage.png">
                 </div><br/>
                 <p1 class="description">
-                    <p2 class="details">Name: {{ Patient.firstName }} {{ Patient.infix }} {{ Patient.lastName }}</p2>
+                    <p2 class="details">Name: </p2> {{ Patient.firstName }} {{ Patient.infix }} {{ Patient.lastName }}
                 </p1><br />
                 <p1 class="description">
                     <p2 class="details">DOB:</p2> {{ Patient.dateOfBirth }}
@@ -91,9 +94,7 @@ import { GetPatientById } from '../assets/Patient';
                     Medicine:
                 </p>
                 <p1 class="description">
-                    Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
-                    classical
-                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintocksick
+                    {{ Patient.medicine }}
                 </p1><br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditMedicine()">
                     <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg"
@@ -116,11 +117,7 @@ import { GetPatientById } from '../assets/Patient';
                     Description:
                 </p>
                 <p1 class="description">
-                    It is a long established fact that a reader will be distracted by the readable content of a page
-                    when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution
-                    of letters, as opposed to using 'Content here, content here', making it look like readable English.
+                    {{ Patient.description }}
                 </p1><br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditDescription()">
                     <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg"
@@ -144,91 +141,35 @@ import { GetPatientById } from '../assets/Patient';
                 </button>
                 <hr />
 
-                <div class="box4">
-                    <h2>Gebroken been</h2>
-                    <p class="p-trunc">
+                <div class="box4" v-for="history in PatientHistory">
+                    <h2>{{ history.title }}</h2>
                         <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                 <path
                                     d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
                             </svg></span>
-                        date/time: 11-02-2023 (16:56)
-                    </p>
-                    <p class="p-trunc">
+                        date/time: {{ history.date }}
+                        <br/>
                         <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                 <path
                                     d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-96 55.2C54 332.9 0 401.3 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-81-54-149.4-128-171.1V362c27.6 7.1 48 32.2 48 62v40c0 8.8-7.2 16-16 16H336c-8.8 0-16-7.2-16-16s7.2-16 16-16V424c0-17.7-14.3-32-32-32s-32 14.3-32 32v24c8.8 0 16 7.2 16 16s-7.2 16-16 16H256c-8.8 0-16-7.2-16-16V424c0-29.8 20.4-54.9 48-62V304.9c-6-.6-12.1-.9-18.3-.9H178.3c-6.2 0-12.3 .3-18.3 .9v65.4c23.1 6.9 40 28.3 40 53.7c0 30.9-25.1 56-56 56s-56-25.1-56-56c0-25.4 16.9-46.8 40-53.7V311.2zM144 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
                             </svg></span>
-                        docter: Dhr.Bibber
-                    </p>
+                        docter: {{ history.doctor }}
                     <hr /><br />
                     <h3>Description:</h3>
                     <p1 class="description">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look even slightly
-                        believable.
-                    </p1>
-                </div>
-                <div class="box4">
-                    <h2>Aanrijding</h2>
-                    <p class="p-trunc">
-                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-                            </svg></span>
-                        date/time: 11-02-2023 (17:12)
-                    </p>
-                    <p class="p-trunc">
-                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-96 55.2C54 332.9 0 401.3 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-81-54-149.4-128-171.1V362c27.6 7.1 48 32.2 48 62v40c0 8.8-7.2 16-16 16H336c-8.8 0-16-7.2-16-16s7.2-16 16-16V424c0-17.7-14.3-32-32-32s-32 14.3-32 32v24c8.8 0 16 7.2 16 16s-7.2 16-16 16H256c-8.8 0-16-7.2-16-16V424c0-29.8 20.4-54.9 48-62V304.9c-6-.6-12.1-.9-18.3-.9H178.3c-6.2 0-12.3 .3-18.3 .9v65.4c23.1 6.9 40 28.3 40 53.7c0 30.9-25.1 56-56 56s-56-25.1-56-56c0-25.4 16.9-46.8 40-53.7V311.2zM144 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
-                            </svg></span>
-                        docter: Dhr.Bibber
-                    </p>
-                    <hr /><br />
-                    <h3>Description:</h3>
-                    <p1 class="description">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look even slightly
-                        believable.
-                    </p1>
-                </div>
-                <div class="box4">
-                    <h2>Teen eraf</h2>
-                    <p class="p-trunc">
-                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
-                            </svg></span>
-                        date/time: 11-02-2023 (17:26)
-                    </p>
-                    <p class="p-trunc">
-                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-96 55.2C54 332.9 0 401.3 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-81-54-149.4-128-171.1V362c27.6 7.1 48 32.2 48 62v40c0 8.8-7.2 16-16 16H336c-8.8 0-16-7.2-16-16s7.2-16 16-16V424c0-17.7-14.3-32-32-32s-32 14.3-32 32v24c8.8 0 16 7.2 16 16s-7.2 16-16 16H256c-8.8 0-16-7.2-16-16V424c0-29.8 20.4-54.9 48-62V304.9c-6-.6-12.1-.9-18.3-.9H178.3c-6.2 0-12.3 .3-18.3 .9v65.4c23.1 6.9 40 28.3 40 53.7c0 30.9-25.1 56-56 56s-56-25.1-56-56c0-25.4 16.9-46.8 40-53.7V311.2zM144 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
-                            </svg></span>
-                        docter: Dhr.Bibber
-                    </p>
-                    <hr /><br />
-                    <h3>Description:</h3>
-                    <p1 class="description">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look even slightly
-                        believable.
+                        {{ history.description }}
                     </p1>
                 </div>
             </div>
         </div>
     </section>
 
-    <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp"
-        v-on:updatePatientDetails="updateSuccesfull()" v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
-        v-on:changeEditMedicineComponent="closeEditMedicine()" v-on:changeEditDescriptionComponent="closeEditDescription()"
+    <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp" :currentPatient="Patient"
+        v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
+        v-on:changeEditMedicineComponent="closeEditMedicine()" 
+        v-on:changeEditDescriptionComponent="closeEditDescription()"
         v-on:changeAddHistoryComponent="closeAddHistory()">
     </component>
 </template>
@@ -251,7 +192,17 @@ export default {
                 adress: '',
                 phoneNumber: '',
                 email: '',
-                insured: ''
+                insured: '',
+                medicine: '',
+                description: '',
+            },
+
+            PatientHistory: {
+                id: '',
+                date: '',
+                doctor: '',
+                title: '',
+                description: ''
             },
 
             setEditPatientdetailsComp: false
@@ -272,6 +223,7 @@ export default {
     ],
     async mounted() {
         this.Patient = await GetPatientById(this.patientId);
+        this.PatientHistory = await getPatientHistoryById(this.patientId)
         window.scrollTo(0, 0);
     },
     methods: {

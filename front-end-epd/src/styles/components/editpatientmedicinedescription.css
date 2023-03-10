@@ -34,6 +34,15 @@ section {
     color: var(--black);
 }
 
+.text-danger{
+    color: #f44336;
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 365px;
+  }
+
 .box {
     padding: 1.5rem;
     background: var(--white);

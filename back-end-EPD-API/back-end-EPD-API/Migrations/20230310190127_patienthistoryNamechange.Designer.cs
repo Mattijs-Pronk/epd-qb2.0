@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using back_end_EPD_API.Data;
 
@@ -11,9 +12,11 @@ using back_end_EPD_API.Data;
 namespace back_end_EPD_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230310190127_patienthistoryNamechange")]
+    partial class patienthistoryNamechange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,7 +74,7 @@ namespace back_end_EPD_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("back_end_EPD_API.Classes.PatientHistory", b =>
@@ -82,9 +85,8 @@ namespace back_end_EPD_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -94,7 +96,7 @@ namespace back_end_EPD_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -105,16 +107,14 @@ namespace back_end_EPD_API.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("PatientHistories", (string)null);
+                    b.ToTable("PatientHistories");
                 });
 
             modelBuilder.Entity("back_end_EPD_API.Classes.PatientHistory", b =>
                 {
                     b.HasOne("back_end_EPD_API.Classes.Patient", null)
                         .WithMany("patientHistories")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
                 });
 
             modelBuilder.Entity("back_end_EPD_API.Classes.Patient", b =>

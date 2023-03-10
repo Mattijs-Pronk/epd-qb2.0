@@ -26,73 +26,74 @@ import {
 
                 <form @submit.prevent="submitForm">
                     <div class="inputBox">
-                        <input class="inputBox-field" type="text" v-model="img" placeholder="https://imgur.png" @blur="Img"
-                            @keyup="Img">
+                        <input id="img" class="inputBox-field" type="text" v-model="Patient.imageUrl" placeholder="https://imgur.png"
+                            @blur="Img" @keyup="Img">
                         <span>Image URL</span>
-                        <span1 v-if="imgError" class="text-danger">{{ imgError }}</span1>
+                        <p1 v-if="imgError" class="text-danger">{{ imgError }}</p1>
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-first">
-                            <input class="inputBox-field" type="text" v-model="firstname" @blur="FirstName"
+                            <input id="firstname" class="inputBox-field" type="text" v-model="Patient.firstName" @blur="FirstName"
                                 @keyup="FirstName">
                             <span>Firstname <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M186 32c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V172.9l122-70.4c15.3-8.8 34.9-3.6 43.7 11.7l16 27.7c8.8 15.3 3.6 34.9-11.7 43.7L330 256l122 70.4c15.3 8.8 20.5 28.4 11.7 43.7l-16 27.7c-8.8 15.3-28.4 20.6-43.7 11.7L282 339.1V480c0 17.7-14.3 32-32 32H218c-17.7 0-32-14.3-32-32V339.1L64 409.6c-15.3 8.8-34.9 3.6-43.7-11.7l-16-27.7C-4.5 354.8 .7 335.3 16 326.4L138 256 16 185.6C.7 176.7-4.5 157.2 4.3 141.9l16-27.7C29.1 98.8 48.7 93.6 64 102.4l122 70.4V32z" />
                                 </svg></span>
-                            <span1 v-if="firstnameError" class="text-danger">{{ firstnameError }}</span1>
+                            <p1 v-if="firstnameError" class="text-danger">{{ firstnameError }}</p1>
                         </div>
                         <div class="inputBox-middle">
-                            <input class="inputBox-field" type="text" v-model="infix">
+                            <input class="inputBox-field" type="text" v-model="Patient.infix">
                             <span>Infix</span>
                         </div>
                         <div class="inputBox-last">
-                            <input class="inputBox-field" type="text" v-model="lastname" @blur="LastName" @keyup="LastName">
+                            <input id="lastname" class="inputBox-field" type="text" v-model="Patient.lastName" @blur="LastName"
+                                @keyup="LastName">
                             <span>Lastname <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M186 32c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V172.9l122-70.4c15.3-8.8 34.9-3.6 43.7 11.7l16 27.7c8.8 15.3 3.6 34.9-11.7 43.7L330 256l122 70.4c15.3 8.8 20.5 28.4 11.7 43.7l-16 27.7c-8.8 15.3-28.4 20.6-43.7 11.7L282 339.1V480c0 17.7-14.3 32-32 32H218c-17.7 0-32-14.3-32-32V339.1L64 409.6c-15.3 8.8-34.9 3.6-43.7-11.7l-16-27.7C-4.5 354.8 .7 335.3 16 326.4L138 256 16 185.6C.7 176.7-4.5 157.2 4.3 141.9l16-27.7C29.1 98.8 48.7 93.6 64 102.4l122 70.4V32z" />
                                 </svg></span>
-                            <span1 v-if="lastnameError" class="text-danger">{{ lastnameError }}</span1>
+                            <p1 v-if="lastnameError" class="text-danger">{{ lastnameError }}</p1>
                         </div>
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-dob">
-                            <input class="inputBox-field" type="date" v-model="dob"
-                                @blur="DateOfBirth" @keyup="DateOfBirth">
+                            <input id="dob" class="inputBox-field" type="date" v-model="Patient.dateOfBirth" @blur="DateOfBirth"
+                                @keyup="DateOfBirth">
                             <span>DateOfBirth <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M186 32c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V172.9l122-70.4c15.3-8.8 34.9-3.6 43.7 11.7l16 27.7c8.8 15.3 3.6 34.9-11.7 43.7L330 256l122 70.4c15.3 8.8 20.5 28.4 11.7 43.7l-16 27.7c-8.8 15.3-28.4 20.6-43.7 11.7L282 339.1V480c0 17.7-14.3 32-32 32H218c-17.7 0-32-14.3-32-32V339.1L64 409.6c-15.3 8.8-34.9 3.6-43.7-11.7l-16-27.7C-4.5 354.8 .7 335.3 16 326.4L138 256 16 185.6C.7 176.7-4.5 157.2 4.3 141.9l16-27.7C29.1 98.8 48.7 93.6 64 102.4l122 70.4V32z" />
                                 </svg></span>
-                            <span1 v-if="dobError" class="text-danger">{{ dobError }}</span1>
+                            <p1 v-if="dobError" class="text-danger">{{ dobError }}</p1>
                         </div>
                         <div class="inputBox-csn">
-                            <input class="inputBox-field" type="text" v-model="csn" @blur="CitizenServiceNumber"
+                            <input id="csn" class="inputBox-field" type="text" v-model="Patient.citizenServiceNumber" @blur="CitizenServiceNumber"
                                 @keyup="CitizenServiceNumber">
                             <span>CitizenServiceNumber <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
                                         d="M186 32c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32V172.9l122-70.4c15.3-8.8 34.9-3.6 43.7 11.7l16 27.7c8.8 15.3 3.6 34.9-11.7 43.7L330 256l122 70.4c15.3 8.8 20.5 28.4 11.7 43.7l-16 27.7c-8.8 15.3-28.4 20.6-43.7 11.7L282 339.1V480c0 17.7-14.3 32-32 32H218c-17.7 0-32-14.3-32-32V339.1L64 409.6c-15.3 8.8-34.9 3.6-43.7-11.7l-16-27.7C-4.5 354.8 .7 335.3 16 326.4L138 256 16 185.6C.7 176.7-4.5 157.2 4.3 141.9l16-27.7C29.1 98.8 48.7 93.6 64 102.4l122 70.4V32z" />
                                 </svg></span>
-                            <span1 v-if="csnError" class="text-danger">{{ csnError }}</span1>
+                            <p1 v-if="csnError" class="text-danger">{{ csnError }}</p1>
                         </div>
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-dob">
-                            <input class="inputBox-field" type="text" v-model="adress">
+                            <input class="inputBox-field" type="text" v-model="Patient.adress">
                             <span>Adress</span>
                         </div>
                         <div class="inputBox-csn">
-                            <input class="inputBox-field" type="text" v-model="phone">
+                            <input class="inputBox-field" type="text" v-model="Patient.phoneNumber">
                             <span>Phone</span>
                         </div>
                     </div>
                     <div class="inputBox">
-                        <input class="inputBox-field" type="text" v-model="email" placeholder="example@example.com"
-                            @blur="Email" @keyup="Email">
+                        <input id="email" class="inputBox-field" type="text" v-model="Patient.email"
+                            placeholder="example@example.com" @blur="Email" @keyup="Email">
                         <span>Email</span>
-                        <span1 v-if="emailError" class="text-danger">{{ emailError }}</span1>
+                        <p1 v-if="emailError" class="text-danger">{{ emailError }}</p1>
                     </div>
                     <button class="btn-save" type="submit">
                         <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
@@ -112,17 +113,17 @@ import {
 export default {
     data() {
         return {
-            img: null,
-            firstname: '',
-            infix: null,
-            lastname: '',
-            dob: '',
-            csn: '',
-            adress: null,
-            phone: null,
-            email: null,
-
-            prevdob: 0,
+            Patient: {
+                imageUrl: null,
+                firstName: '',
+                infix: null,
+                lastName: '',
+                dateOfBirth: '',
+                citizenServiceNumber: '',
+                adress: null,
+                phoneNumber: null,
+                email: null,
+            },
 
             imgError: '',
             firstnameError: '',
@@ -142,7 +143,7 @@ export default {
             this.DateOfBirth();
 
             if (this.imgError == '' && this.firstnameError == '' && this.lastnameError == '' && this.csnError == '' && this.emailError == '' && this.dobError == '') {
-                await AddNewPatient(this.img, this.firstname, this.infix, this.lastname, this.dob, this.csn, this.adress, this.phone, this.email)
+                await AddNewPatient(this.Patient)
 
                 const id = 1;
                 const message = 'Patient has been created';
@@ -150,24 +151,29 @@ export default {
 
                 Object.assign(this.$data, this.$options.data())
             }
+            else {
+                const id = 2;
+                const message = 'Patient has not been created';
+                AlertMessage(id, message);
+            }
         },
         Img() {
-            this.imgError = checkImg(this.img);
+            this.imgError = checkImg(this.Patient.imageUrl);
         },
         FirstName() {
-            this.firstnameError = checkFirstName(this.firstname);
+            this.firstnameError = checkFirstName(this.Patient.firstName);
         },
         LastName() {
-            this.lastnameError = checkLastName(this.lastname);
+            this.lastnameError = checkLastName(this.Patient.lastName);
         },
         CitizenServiceNumber() {
-            this.csnError = checkCitizenServiceNumber(this.csn);
+            this.csnError = checkCitizenServiceNumber(this.Patient.citizenServiceNumber);
         },
         Email() {
-            this.emailError = checkEmail(this.email);
+            this.emailError = checkEmail(this.Patient.email);
         },
         DateOfBirth() {
-            this.dobError = checkDateOfBirth(this.dob);
+            this.dobError = checkDateOfBirth(this.Patient.dateOfBirth);
         }
     }
 }

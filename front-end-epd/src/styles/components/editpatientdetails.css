@@ -34,6 +34,29 @@ section {
   color: var(--black);
 }
 
+.icon-required {
+  fill: var(--main-colour);
+  width: 7px;
+  font-weight: bold;
+  margin-top: -12px;
+  margin-left: -1px;
+}
+
+::-webkit-calendar-picker-indicator{
+  background-color: var(--main-colour);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.text-danger{
+  color: #f44336;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 52px;
+}
+
 .box {
   padding: 1.5rem;
   background: var(--white);

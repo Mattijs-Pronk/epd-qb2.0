@@ -2,7 +2,7 @@
     <div class="patient-search">
         <div class="patient-search-box">
             <input type="text" class="search-control" placeholder="Name" v-model="searchPhrase" @keyup="searchPatient" @blur="searchPatient">
-            <button type="submit" class="search-btn">
+            <button class="search-btn">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path
@@ -25,7 +25,7 @@ export default{
     ],
     methods: {
         searchPatient(){
-            this.$emit('searchPatient', this.searchPhrase.toLowerCase())
+            this.$emit('searchPatient', this.searchPhrase)
         }
     }
 }

@@ -6,6 +6,18 @@ const reImg = /^(https?:\/\/.*\.(?:png))/;
 
 
 
+//borderColour changer
+export const changeBorderColour = (error, field) => {
+    const Border = document.getElementById(field)
+    if (error) {
+        Border.style.border = '1px solid #f44336'
+    }
+    else {
+        Border.style.border = '1px solid var(--black)'
+    }
+}
+
+
 
 //image checker
 export const checkImg = (img) => {
@@ -14,6 +26,9 @@ export const checkImg = (img) => {
     }
     const error = img.length < 1 ? '' :
         (validateImg(img) ? '' : 'Not a correct link')
+
+    changeBorderColour(error, 'img');
+
     return error;
 };
 
@@ -24,16 +39,33 @@ export const validateImg = (img) => {
     return reImg.test(img);
 };
 
-//name checker
+
+
+//firstname checker
 export const checkFirstName = (firstname) => {
     const error = firstname.length == 0 ? 'Firstname cannot be empty' :
-        firstname.length >= 20 ? 'Firstname is too long' : '';
+        firstname.length >= 20 ? 'Firstname is too long'
+            : (validateName(firstname) ? '' : 'letters only');
+
+    changeBorderColour(error, 'firstname');
+
     return error;
 };
 
+export const validateName = (name) => {
+    return reName.test(name);
+};
+
+
+
+//lastname checker
 export const checkLastName = (lastname) => {
     const error = lastname.length == 0 ? 'Lastname cannot be empty' :
-        lastname.length >= 20 ? 'Lastname is too long' : '';
+        lastname.length >= 22 ? 'Lastname is too long'
+            : (validateName(lastname) ? '' : 'letters only');
+
+    changeBorderColour(error, 'lastname');
+
     return error;
 };
 
@@ -42,7 +74,10 @@ export const checkLastName = (lastname) => {
 //date of birth checker
 export const checkDateOfBirth = (dob) => {
     const error = dob.length > 10 ? 'DOB is too long'
-            : (validateDateOfBirth(dob) ? '' : 'example: (01-01-0001)')
+        : (validateDateOfBirth(dob) ? '' : 'example: (01-01-0001)')
+
+    changeBorderColour(error, 'dob');
+
     return error;
 };
 
@@ -61,7 +96,10 @@ export const validateDateOfBirth = (dob) => {
 export const checkCitizenServiceNumber = (csn) => {
     const error = csn.length == 0 ? 'CSN cannot be empty' :
         csn.length > 9 ? 'CSN is too long'
-            : (validateCitizenServieNumber(csn) ? '' : 'only allow numbers')
+            : (validateCitizenServieNumber(csn) ? '' : 'numbers only')
+
+    changeBorderColour(error, 'csn');
+
     return error;
 };
 
@@ -78,6 +116,9 @@ export const checkEmail = (email) => {
     }
     const error = email.length < 1 ? '' :
         (validateEmail(email) ? '' : email + ' is not an email.')
+
+    changeBorderColour(error, 'email');
+
     return error;
 };
 
@@ -99,4 +140,36 @@ export const checkPassword = (password) => {
 export const checkRePassword = (password, repassword) => {
     repassword.length == 0 ? 'Repassword cannot be empty' :
         password != repassword ? 'Password and RePassword do not match' : ''
+};
+
+
+
+//medicine,description checker
+export const checkMedicineDescription = (medicinedescription) => {
+    const error = medicinedescription.length > 800 ? 'Input text is to long (maximum of 800 characters)' : ''
+    return error;
+};
+
+
+
+//history title checker
+export const checkHistoryTitle = (title) => {
+    const error = title.length == 0 ? 'Title cannot be empty' :
+        title.length >= 42 ? 'Title is too long' : '';
+
+    changeBorderColour(error, 'historytitle');
+
+    return error;
+};
+
+
+
+//history description checker
+export const checkHistoryDescription = (description) => {
+    const error = description.length == 0 ? 'Description cannot be empty' :
+        description.length >= 900 ? 'Description is too long' : '';
+
+    changeBorderColour(error, 'historydescription');
+
+    return error;
 };

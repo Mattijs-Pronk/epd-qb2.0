@@ -3,8 +3,8 @@ import Searchbar from './Searchbar.vue';
 </script>
 
 <template>
+    <Searchbar />
     <section class="items">
-        <Searchbar />
         <div class="box-container">
             <div class="box">
                 <img src="./icons/hasbullah.png">

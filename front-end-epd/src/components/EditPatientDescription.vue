@@ -1,9 +1,9 @@
 <script setup>
-import { AddNewPatientHistory } from '../assets/Patient'
+import { UpdatePatientDescription } from '../assets/Patient'
 import { AlertMessage } from '../assets/global';
 
 import {
-    checkHistoryTitle, checkHistoryDescription
+    checkMedicineDescription
 } from '../assets/Validate';
 </script>
 
@@ -11,8 +11,8 @@ import {
     <section>
         <div class="container">
             <div class="box">
-                <h1>Add history</h1>
-                <span v-on:click="closeAddHistory()" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
+                <h1>Edit description</h1>
+                <span v-on:click="closeEditDescription()" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
@@ -21,18 +21,10 @@ import {
 
                 <form @submit.prevent="submitForm">
                     <div class="inputBox">
-                        <input id="historytitle" class="inputBox-field" type="text" v-model="PatientHistory.title"
-                            @blur="HistoryTitle" @keyup="HistoryTitle">
-                        <span>Title</span>
-                        <p1 v-if="titleError" class="text-danger">{{ titleError }}</p1>
-                    </div>
-
-                    <div class="inputBox-textarea">
-                        <textarea id="historydescription" class="inputBox-field-textarea" type="text"
-                            v-model="PatientHistory.description" @blur="HistoryDescription"
-                            @keyup="HistoryDescription"></textarea>
+                        <textarea class="inputBox-field" type="text" v-model="Patient.description" @blur="Description"
+                            @keyup="Description"></textarea>
                         <span>Description</span>
-                        <p1 v-if="descriptionError" class="text-danger-description">{{ descriptionError }}</p1>
+                        <p1 v-if="descriptionError" class="text-danger">{{ descriptionError }}</p1>
                     </div>
 
                     <button class="btn-save" type="submit">
@@ -44,7 +36,8 @@ import {
                         <span> Save</span>
                     </button>
                 </form>
-                <a class="btn-cancel" v-on:click="closeAddHistory()">
+
+                <a class="btn-cancel" v-on:click="closeEditDescription()">
                     <span class="icon-btn-cancel"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -62,14 +55,11 @@ import {
 export default {
     data() {
         return {
-            PatientHistory: {
-                doctor: '',
-                title: '',
+            Patient: {
+                id: '',
                 description: '',
-                patientId: '',
             },
 
-            titleError: '',
             descriptionError: ''
         }
     },
@@ -77,41 +67,32 @@ export default {
     'currentPatient'
     ],
     emits: [
-        "changeAddHistoryComponent"
+        "changeEditDescriptionComponent"
     ],
-    mounted(){
-        this.PatientHistory.patientId = this.currentPatient.id
-        console.log(this.PatientHistory.patientId)
+    mounted() {
+        this.Patient = this.currentPatient;
     },
     methods: {
-        closeAddHistory() {
-            this.$emit('changeAddHistoryComponent', true)
+        closeEditDescription() {
+            this.$emit('changeEditDescriptionComponent', true)
         },
-        HistoryTitle() {
-            this.titleError = checkHistoryTitle(this.PatientHistory.title)
-        },
-        HistoryDescription() {
-            this.descriptionError = checkHistoryDescription(this.PatientHistory.description)
+        Description() {
+            this.descriptionError = checkMedicineDescription(this.Patient.description)
         },
         async submitForm() {
-            this.HistoryTitle();
-            this.HistoryDescription();
+            this.Description();
 
-            if (this.titleError == '' && this.descriptionError == '') {
-                sessionStorage.setItem("DoctorName", "Pieter  van de Buurt")
-                this.PatientHistory.doctor = sessionStorage.getItem("DoctorName")
-
-                console.log(this.PatientHistory)
-                await AddNewPatientHistory(this.PatientHistory);
+            if(this.descriptionError == ''){
+                await UpdatePatientDescription(this.Patient);
 
                 const id = 1;
-                const message = 'Patient history added';
+                const message = 'Patient description has been updated';
                 AlertMessage(id, message);
 
-                this.closeAddHistory();
-            } else {
+                this.closeEditDescription();
+            }else{
                 const id = 2;
-                const message = 'Patient history not added';
+                const message = 'Patient description has not been updated';
                 AlertMessage(id, message);
             }
         }
@@ -121,5 +102,5 @@ export default {
 
 
 <style scoped>
-@import '../styles/components/addpatienthistory.css';
+@import '../styles/components/editpatientmedicinedescription.css';
 </style>

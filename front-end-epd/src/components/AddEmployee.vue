@@ -72,16 +72,6 @@
                     </div>
                 </div>
 
-
-                <!-- <div class="select-menu">
-                    <select class="select" id="ddlselect" v-on:change="setRank()">
-                    <option value="" selected disabled>Select rank</option>
-                    <option value="doc2">Doc2</option>
-                    <option value="doc3">Doc3</option>
-                    <option value="doc4">Doc4</option>
-                </select>
-                </div> -->
-
                 <a class="btn-save">
                     <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -113,8 +103,10 @@ export default {
         this.Ranks.push({ id: '5', rank: 'Manager' })
     },
     methods: {
-        setRank() {
-            this.rank = document.getElementById("ddlselect").value;
+        setRank(id, rank) {
+            console.log(id, rank)
+
+            document.getElementById('currentrank').innerHTML = rank;
         },
         DropdownRanks() {
             this.isActive = document.getElementById("dropdown-ranks");

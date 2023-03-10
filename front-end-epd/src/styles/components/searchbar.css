@@ -60,7 +60,6 @@
     background: var(--main-colour);
     color: var(--white);
     border: none;
-    cursor: pointer;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     transition: all 0.4s linear;
@@ -68,10 +67,6 @@
     -moz-transition: all 0.4s linear;
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
-}
-
-.search-btn:hover {
-    background-color: var(--black);
 }
 
 .icon {

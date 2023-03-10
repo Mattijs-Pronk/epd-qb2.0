@@ -10,7 +10,8 @@ namespace back_end_EPD_API.Data
 
         }
 
-        public DbSet<Patient> Patient { get; set; } = null!;
+        public DbSet<Patient> Patients { get; set; } = null!;
+        public DbSet<PatientHistory> PatientHistories { get; set; } = null!;
 
         //update klaar zetten Tools>Nuget Package manager>PackageManager console> type in console "add-migration 'wat je hebt verandert'"
         //update batabase met Tools>Nuget Package manager>PackageManager console> type in console "Update-Database"

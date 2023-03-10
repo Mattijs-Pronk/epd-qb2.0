@@ -34,6 +34,24 @@ section {
   color: var(--black);
 }
 
+.text-danger{
+  color: #f44336;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 52px;
+}
+
+.text-danger-description{
+  color: #f44336;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 262px;
+}
+
 .box {
   padding: 1.5rem;
   background: var(--white);
@@ -246,6 +264,15 @@ section {
 
 @media screen and (max-width: 1080px) {
   .inputBox .inputBox-field {
-    height: 30px;
+    height: 35px;
+  }
+  .text-danger{
+    top: 48px;
+    font-size: 12px;
+    font-weight: normal;
+  }
+  .text-danger-description{
+    font-size: 12px;
+    font-weight: normal;
   }
 }

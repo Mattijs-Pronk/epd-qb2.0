@@ -1,10 +1,11 @@
 :root {
     --main-colour: #10BBE5;
-    --secundary-colour: #EEA47FFF;
-    --white: #fff;
-    --black: #000000;
-    --background: #eee;
-    --darkbackground: #181818;
+  --secundary-colour: #EEA47FFF;
+  --white: #fff;
+  --text-background: #fff;
+  --black: #000000;
+  --background: #ccc;
+  --darkbackground: #383838;
 }
 
 * {
@@ -236,6 +237,7 @@ section {
     padding: 1.5rem;
     background: var(--white);
     border-radius: .5rem;
+    border: 2px solid var(--text-background);
     border-left: 4px solid var(--main-colour);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9);
     position: relative;

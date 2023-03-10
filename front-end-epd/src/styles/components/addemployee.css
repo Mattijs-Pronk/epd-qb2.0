@@ -252,7 +252,7 @@ section {
   position: absolute;
   display: inline-block;
   font-size: 16px;
-  padding: 9px 0;
+  padding: 7px 0;
   width: 15%;
   height: 40px;
   margin-top: 5px;
@@ -264,7 +264,6 @@ section {
   text-align: center;
 }
 
-.dropdown2-content,
 .dropdown-content {
   display: none;
   position: absolute;
@@ -278,13 +277,13 @@ section {
   margin-top: 5px;
 }
 
-.dropdown2-content p,
 .dropdown-content p {
+  text-align: left;
   font-size: 15px;
+  font-weight: normal;
   margin: 0 0 0px;
 }
 
-.dropdown2-content p:hover,
 .dropdown-content p:hover {
   background: var(--text-background);
   border-right: 3px solid var(--main-colour);
@@ -294,7 +293,6 @@ section {
   background: var(--white);
 }
 
-.dropdown2:hover .dropdown2-content,
 .dropdown:hover .dropdown-content {
   display: block;
   background: var(--white);

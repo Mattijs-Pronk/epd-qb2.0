@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using back_end_EPD_API.Data;
 
@@ -11,9 +12,11 @@ using back_end_EPD_API.Data;
 namespace back_end_EPD_API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230309200243_namChange")]
+    partial class namChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,55 +74,7 @@ namespace back_end_EPD_API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Patients", (string)null);
-                });
-
-            modelBuilder.Entity("back_end_EPD_API.Classes.PatientHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Doctor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("PatientHistories", (string)null);
-                });
-
-            modelBuilder.Entity("back_end_EPD_API.Classes.PatientHistory", b =>
-                {
-                    b.HasOne("back_end_EPD_API.Classes.Patient", null)
-                        .WithMany("patientHistories")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("back_end_EPD_API.Classes.Patient", b =>
-                {
-                    b.Navigation("patientHistories");
+                    b.ToTable("Patients");
                 });
 #pragma warning restore 612, 618
         }

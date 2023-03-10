@@ -104,21 +104,12 @@
                                     </svg></span>
                                 <div class="dropdown2-content">
                                     <p v-for="spec in this.InactiveSpecs" :key="spec.id"
-                                        v-on:click="setSpec2(spec.id, spec.spec)">
+                                        v-on:click="setSpec(spec.id, spec.spec)">
                                         {{ spec.spec }}
                                     </p>
                                 </div>
                             </div>
                         </div>
-
-
-                        <!-- <select class="btn-add" id="ddlspec" v-on:change="setSpec()">
-                            <option value="" selected disabled>Add</option>
-                            <option v-for="specialization in this.InactiveSpecs"
-                                v-bind:value="[specialization.id, specialization.spec]">
-                                {{ specialization.spec }}
-                            </option>
-                        </select> -->
                     </div>
                 </div>
                 <a class="btn-save">
@@ -180,19 +171,7 @@ export default {
 
             document.getElementById('currentrank').innerHTML = rank;
         },
-        setSpec2(id, spec) {
-            this.ActiveSpecs.push({ id: id, spec: spec })
-            document.getElementById("ddlspec").selectedIndex = "Add";
-
-            let newList = this.InactiveSpecs.filter((el) => el.id !== id);
-            this.InactiveSpecs = newList;
-        },
-        setSpec() {
-            var item = document.getElementById("ddlspec").value;
-
-            var id = item.split(',')[0];
-            var spec = item.split(',')[1];
-
+        setSpec(id, spec) {
             this.ActiveSpecs.push({ id: id, spec: spec })
             document.getElementById("ddlspec").selectedIndex = "Add";
 
