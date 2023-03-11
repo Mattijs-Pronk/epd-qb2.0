@@ -19,7 +19,7 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
-    border-top: 2px solid var(--main-colour);
+    border-top: 1px solid var(--main-colour);
     text-align: center;
     background: var(--darkbackground);
 }

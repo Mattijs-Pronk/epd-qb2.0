@@ -1,6 +1,8 @@
 ﻿using back_end_EPD_API.Classes;
 using back_end_EPD_API.Data;
+using back_end_EPD_API.SignalRHubs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace back_end_EPD_API.Controllers
@@ -8,10 +10,12 @@ namespace back_end_EPD_API.Controllers
     public class PatientController : Controller
     {
         public readonly DataContext _context;
+        public readonly IHubContext<PatientHub> _hub;
 
-        public PatientController(DataContext context)
+        public PatientController(DataContext context, IHubContext<PatientHub> hub)
         {
             _context = context;
+            _hub = hub;
         }
 
         [HttpGet("getpatientbyid")]
@@ -26,7 +30,7 @@ namespace back_end_EPD_API.Controllers
         [HttpGet("getallpatients")]
         public async Task<ActionResult> GetAllPatients()
         {
-            var mypatient = await _context.Patients
+            var mypatient = await _context.Patients.Where(u => u.isActive == true)
                          .Select(u => new
                          {
                              u.Id,
@@ -35,7 +39,8 @@ namespace back_end_EPD_API.Controllers
                              u.Infix,
                              u.LastName,
                              u.DateOfBirth,
-                             u.CitizenServiceNumber
+                             u.CitizenServiceNumber,
+                             u.Insured,
                          })
                          .ToListAsync();
 
@@ -47,6 +52,8 @@ namespace back_end_EPD_API.Controllers
         {
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
+
+            await _hub.Clients.All.SendAsync("NewPatient", patient);
 
             return Ok("patient added");
         }
@@ -70,6 +77,9 @@ namespace back_end_EPD_API.Controllers
                 mypatient.Insured = patient.Insured;
 
                 await _context.SaveChangesAsync();
+
+                await _hub.Clients.All.SendAsync("UpdatePatient", patient);
+
                 return Ok("patient details updated");
             }
             return BadRequest("patient not found");
@@ -84,7 +94,24 @@ namespace back_end_EPD_API.Controllers
                 mypatient.Medicine = patient.Medicine;
 
                 await _context.SaveChangesAsync();
-                return Ok("patient medicine updated");
+                return Ok("patient removed");
+            }
+            return BadRequest("patient not found");
+        }
+
+        [HttpPut("removepatientbyid")]
+        public async Task<ActionResult> RemovePatientById(int id)
+        {
+            var mypatient = await _context.Patients.FindAsync(id);
+            if (mypatient != null)
+            {
+                mypatient.isActive = false;
+
+                await _context.SaveChangesAsync();
+
+                await _hub.Clients.All.SendAsync("RemovePatient", mypatient.Id);
+
+                return Ok("patient removed");
             }
             return BadRequest("patient not found");
         }
@@ -106,7 +133,7 @@ namespace back_end_EPD_API.Controllers
         [HttpPost("addnewpatienthistory")]
         public async Task<ActionResult> AddNewPatientHistory([FromBody] PatientHistory patienthistory)
         {
-            patienthistory.Date = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            patienthistory.Date = DateTime.Now.ToString("dd/MM/yyyy (HH:mm)");
 
             await _context.PatientHistories.AddAsync(patienthistory);
             await _context.SaveChangesAsync();
@@ -120,8 +147,9 @@ namespace back_end_EPD_API.Controllers
             var mypatient = await _context.Patients.FindAsync(id);
             if (mypatient != null)
             {
-                var myhistory = await _context.PatientHistories.Where(u => u.PatientId == id)
+                var myhistory = await _context.PatientHistories.Where(u => u.PatientId == id).OrderByDescending(d => d.Date)
                     .ToListAsync();
+
                 return Ok(myhistory);
             }
             return BadRequest("User not found");

@@ -16,11 +16,9 @@
 }
 
 .patient-search {
-    margin-left: 225px;
-    margin-right: 0;
-    padding-top: 100px;
-    padding-bottom: 20px;
-    background: var(--background);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background: var(--white);
     display: flex;
     justify-content: center;
 }
@@ -28,8 +26,8 @@
 .patient-search-box {
     display: flex;
     align-items: stretch;
-    width: 40%;
-    background-color: var(--background);
+    width: 60%;
+    background-color: var(--white);
 }
 
 .search-control,

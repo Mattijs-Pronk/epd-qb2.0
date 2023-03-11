@@ -6,6 +6,12 @@ import {
     checkFirstName, checkLastName, checkCitizenServiceNumber, checkEmail, checkDateOfBirth, checkImg
 
 } from '../assets/Validate';
+
+defineProps({
+    currentPatient: {
+      required: true,
+    },
+  });
 </script>
 
 <template>
@@ -13,14 +19,14 @@ import {
         <div class="container">
             <div class="box">
                 <h1>Edit details</h1>
-                <span v-on:click="closeEditPatientDetails()" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
+                <span v-on:click="closeEditPatientDetails(null)" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
                     </svg></span>
                 <hr />
 
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
                         <input id="img" class="inputBox-field" type="text" v-model="Patient.imageUrl"
                             placeholder="https://imgur.png" @blur="Img" @keyup="Img">
@@ -106,7 +112,7 @@ import {
                         <span> Save</span>
                     </button>
                 </form>
-                <a class="btn-cancel" v-on:click="closeEditPatientDetails()">
+                <a class="btn-cancel" v-on:click="closeEditPatientDetails(null)">
                     <span class="icon-btn-cancel"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -125,17 +131,17 @@ export default {
     data() {
         return {
             Patient: {
-                id: '',
-                imageUrl: '',
-                firstName: '',
-                infix: '',
-                lastName: '',
-                dateOfBirth: '',
-                citizenServiceNumber: '',
-                adress: '',
-                phoneNumber: '',
-                email: '',
-                insured: '',
+                id: this.currentPatient.id,
+                imageUrl: this.currentPatient.imageUrl,
+                firstName: this.currentPatient.firstName,
+                infix: this.currentPatient.infix,
+                lastName: this.currentPatient.lastName,
+                dateOfBirth: this.currentPatient.dateOfBirth,
+                citizenServiceNumber: this.currentPatient.citizenServiceNumber,
+                adress: this.currentPatient.adress,
+                phoneNumber: this.currentPatient.phoneNumber,
+                email: this.currentPatient.email,
+                insured: this.currentPatient.insured,
             },
 
             imgError: '',
@@ -146,18 +152,12 @@ export default {
             dobError: '',
         }
     },
-    props: [
-        'currentPatient'
-    ],
     emits: [
         "changeEditPatientDetailsComponent"
     ],
-    mounted() {
-        this.Patient = this.currentPatient;
-    },
     methods: {
-        closeEditPatientDetails() {
-            this.$emit('changeEditPatientDetailsComponent', true)
+        closeEditPatientDetails(item) {
+            this.$emit('changeEditPatientDetailsComponent', item)
         },
         async submitForm() {
             this.Img();
@@ -174,7 +174,7 @@ export default {
                 const message = 'Patient has been updated';
                 AlertMessage(id, message);
 
-                this.closeEditPatientDetails()
+                this.closeEditPatientDetails(this.Patient)
             }
             else {
                 const id = 2;

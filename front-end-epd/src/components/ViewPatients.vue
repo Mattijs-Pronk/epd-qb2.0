@@ -3,6 +3,9 @@ import Searchbar from './Searchbar.vue';
 import PatientDetails from '../components/PatientDetails.vue';
 
 import { GetAllPatients } from '../assets/Patient';
+import {
+    newPatient, updatePatient, removePatient
+} from '../assets/SignalR';
 </script>
 
 <template>
@@ -73,6 +76,30 @@ export default {
     },
     async mounted() {
         this.getAllPatients();
+
+        //signalR event for add recent patient to list. 
+        window.addEventListener('NewPatient', () => {
+            this.PatientList.push(newPatient)
+        })
+        //signalR event for add recent updated patient to list. 
+        window.addEventListener('UpdatePatient', () => {
+            const index = this.PatientList.findIndex(item => {
+                return (updatePatient.id === item.id)
+            })
+            this.PatientList[index].imageUrl = updatePatient.imageUrl
+            this.PatientList[index].firstName = updatePatient.firstName
+            this.PatientList[index].infix = updatePatient.infix
+            this.PatientList[index].lastName = updatePatient.lastName
+            this.PatientList[index].dateOfBirth = updatePatient.dateOfBirth
+            this.PatientList[index].citizenServiceNumber = updatePatient.citizenServiceNumber
+        })
+        //signalR event for remove patient from list. 
+        window.addEventListener('RemovePatient', () => {
+            const index = this.PatientList.findIndex(item => {
+                return (removePatient.id === item.id)
+            })
+            this.PatientList.splice(index, 1);
+        })
     },
     computed: {
         filteredPatients() {
@@ -80,14 +107,13 @@ export default {
                 const firstlast = patient.firstName + " " + patient.lastName
                 const fullname = patient.firstName + " " + patient.infix + " " + patient.lastName
                 return firstlast.toLocaleLowerCase().match(this.searchPhrase) ||
-                    fullname.toLocaleLowerCase().match(this.searchPhrase)
-
+                    fullname.toLocaleLowerCase().match(this.searchPhrase) ||
+                    String(patient.citizenServiceNumber).match(this.searchPhrase)
             })
         },
     },
     methods: {
         switchActiveComponent(id) {
-            this.getAllPatients();
             this.viewpatients = !this.viewpatients
             this.setPatientdetails = !this.setPatientdetails
             if (id != null) {

@@ -5,6 +5,12 @@ import { AlertMessage } from '../assets/global';
 import {
     checkMedicineDescription
 } from '../assets/Validate';
+
+defineProps({
+    currentPatient: {
+      required: true,
+    },
+  });
 </script>
 
 <template>
@@ -12,14 +18,14 @@ import {
         <div class="container">
             <div class="box">
                 <h1>Edit medicine</h1>
-                <span v-on:click="closeEditMedicine()" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
+                <span v-on:click="closeEditMedicine(null)" class="icon-btn-close"><svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 320 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                         <path
                             d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z" />
                     </svg></span>
                 <hr />
 
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
                         <textarea class="inputBox-field" type="text" v-model="Patient.medicine" @blur="Medicine"
                             @keyup="Medicine"></textarea>
@@ -37,7 +43,7 @@ import {
                     </button>
                 </form>
 
-                <a class="btn-cancel" v-on:click="closeEditMedicine()">
+                <a class="btn-cancel" v-on:click="closeEditMedicine(null)">
                     <span class="icon-btn-cancel"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -56,25 +62,19 @@ export default {
     data() {
         return {
             Patient: {
-                id: '',
-                medicine: '',
+                id: this.currentPatient.id,
+                medicine: this.currentPatient.medicine,
             },
 
             medicineError: ''
         }
     },
-    props: [
-    'currentPatient'
-    ],
     emits: [
         "changeEditMedicineComponent"
     ],
-    mounted() {
-        this.Patient = this.currentPatient;
-    },
     methods: {
-        closeEditMedicine() {
-            this.$emit('changeEditMedicineComponent', true)
+        closeEditMedicine(item) {
+            this.$emit('changeEditMedicineComponent', item)
         },
         Medicine() {
             this.medicineError = checkMedicineDescription(this.Patient.medicine)
@@ -89,7 +89,7 @@ export default {
                 const message = 'Patient medicine has been updated';
                 AlertMessage(id, message);
 
-                this.closeEditMedicine();
+                this.closeEditMedicine(this.Patient);
             }else{
                 const id = 2;
                 const message = 'Patient medicine has not been updated';

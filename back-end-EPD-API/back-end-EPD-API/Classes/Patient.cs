@@ -36,6 +36,9 @@ namespace back_end_EPD_API.Classes
 
         public string? Description { get; set;}
 
+        [Required]
+        public bool isActive { get; set; }
+
         public ICollection<PatientHistory>? patientHistories { get; set; }
     }
 }

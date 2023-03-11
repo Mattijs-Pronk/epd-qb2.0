@@ -19,7 +19,7 @@ import {
                     </svg></span>
                 <hr />
 
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
                         <input id="historytitle" class="inputBox-field" type="text" v-model="PatientHistory.title"
                             @blur="HistoryTitle" @keyup="HistoryTitle">
@@ -81,11 +81,10 @@ export default {
     ],
     mounted(){
         this.PatientHistory.patientId = this.currentPatient.id
-        console.log(this.PatientHistory.patientId)
     },
     methods: {
         closeAddHistory() {
-            this.$emit('changeAddHistoryComponent', true)
+            this.$emit('changeAddHistoryComponent', this.PatientHistory)
         },
         HistoryTitle() {
             this.titleError = checkHistoryTitle(this.PatientHistory.title)

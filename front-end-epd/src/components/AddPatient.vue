@@ -24,7 +24,7 @@ import {
                     Patient details
                 </p><br />
 
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
                         <input id="img" class="inputBox-field" type="text" v-model="Patient.imageUrl" placeholder="https://imgur.png"
                             @blur="Img" @keyup="Img">

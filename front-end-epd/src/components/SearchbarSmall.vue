@@ -1,7 +1,7 @@
 <template>
     <div class="patient-search">
         <div class="patient-search-box">
-            <input type="text" class="search-control" placeholder="Name/CSN" v-model="searchPhrase" @keyup="searchPatient" @blur="searchPatient">
+            <input type="text" class="search-control" placeholder="Title/Date/Doctor" v-model="searchPhrase" @keyup="searchHistory" @blur="searchHistory">
             <button class="search-btn">
                 <svg class="icon" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -21,14 +21,14 @@ export default{
         }
     },
     emits: [
-        "searchPatient"
+        "searchHistory"
     ],
     methods: {
-        searchPatient(){
-            this.$emit('searchPatient', this.searchPhrase)
+        searchHistory(){
+            this.$emit('searchHistory', this.searchPhrase)
         }
     }
 }
 </script>
 
-<style scoped>@import '../styles/components/searchbar.css';</style>
+<style scoped>@import '../styles/components/searchbarsmall.css';</style>

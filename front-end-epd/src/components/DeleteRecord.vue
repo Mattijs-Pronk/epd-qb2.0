@@ -1,3 +1,14 @@
+<script setup>
+import { RemovePatientById } from '../assets/Patient';
+import { AlertMessage } from '../assets/global';
+
+defineProps({
+    currentPatient: {
+        required: true,
+    },
+});
+</script>
+
 <template>
     <section>
         <div class="container">
@@ -10,9 +21,9 @@
                     </svg></span>
                 <hr />
 
-                <p>Are you sure you want to remove "Hasbulla Magomedov"?</p>
+                <p>Are you sure you want to remove <p1 class="danger">{{ Patient.firstName }} {{ Patient.infix }} {{ Patient.lastName }}</p1> ?</p> 
 
-                <a class="btn-save">
+                <a class="btn-save" v-on:click="submitForm()">
                     <span class="icon-btn-save"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -36,14 +47,38 @@
 
 <script>
 export default {
+    data() {
+        return {
+            Patient: {
+                id: this.currentPatient.id,
+                firstName: this.currentPatient.firstName,
+                infix: this.currentPatient.infix,
+                lastName: this.currentPatient.lastName
+            },
+        }
+    },
     emits: ["changeDeleteRecordComponent"],
     methods: {
         closeDeleteRecord() {
             this.$emit('changeDeleteRecordComponent', true)
         },
+        async submitForm() {
+            if (await RemovePatientById(this.Patient.id)) {
+                const id = 1;
+                const message = 'Patient has been removed';
+                AlertMessage(id, message);
+            } else {
+                const id = 2;
+                const message = 'Something went wrong';
+                AlertMessage(id, message);
+            }
+            this.closeDeleteRecord()
+        }
     }
 }
 </script>
 
 
-<style scoped>@import '../styles/components/editpatientmedicinedescription.css';</style>
+<style scoped>
+@import '../styles/components/editpatientmedicinedescription.css';
+</style>

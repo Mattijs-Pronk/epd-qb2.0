@@ -72,9 +72,18 @@ export const AddNewPatientHistory = async (patienthistory) => {
 };
 
 export const getPatientHistoryById = async (id) => {
-    console.log(id)
     try {
         let response = await APIcalls.getPatientHistoryById(id)
+        return response.data;
+    }
+    catch (error) {
+        console.log(error)
+    }
+};
+
+export const RemovePatientById = async (id) => {
+    try {
+        let response = await APIcalls.RemovePatientById(id)
         return response.data;
     }
     catch (error) {

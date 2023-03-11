@@ -51,4 +51,10 @@ export default {
             headers: { 'Content-type': 'application/json' }
         })
     },
+
+    async RemovePatientById(id) {        
+        return await API().put(`removepatientbyid?id=${id}`, {
+            headers: { 'Content-type': 'application/json' }
+        })
+    },
 };

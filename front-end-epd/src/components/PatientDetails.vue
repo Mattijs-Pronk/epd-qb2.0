@@ -3,6 +3,7 @@ import EditPatientDetails from './EditPatientDetails.vue';
 import EditMedicine from './EditPatientMedicine.vue';
 import EditDescription from './EditPatientDescription.vue';
 import AddPatientHistory from './AddPatientHistory.vue';
+import Searchbarsmall from './SearchbarSmall.vue';
 
 import { 
     GetPatientById, getPatientHistoryById 
@@ -141,14 +142,16 @@ from '../assets/Patient';
                 </button>
                 <hr />
 
-                <div class="box4" v-for="history in PatientHistory">
+                <Searchbarsmall v-on:searchHistory="setSearchPhrase"/>
+
+                <div class="box4" v-for="history in filteredHistory" :key="history.id">
                     <h2>{{ history.title }}</h2>
                         <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                 <path
                                     d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
                             </svg></span>
-                        date/time: {{ history.date }}
+                        date: {{ history.date }}
                         <br/>
                         <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -167,10 +170,10 @@ from '../assets/Patient';
     </section>
 
     <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp" :currentPatient="Patient"
-        v-on:changeEditPatientDetailsComponent="closeEditPatientDetails()"
-        v-on:changeEditMedicineComponent="closeEditMedicine()" 
-        v-on:changeEditDescriptionComponent="closeEditDescription()"
-        v-on:changeAddHistoryComponent="closeAddHistory()">
+        v-on:changeEditPatientDetailsComponent="closeEditPatientDetails"
+        v-on:changeEditMedicineComponent="closeEditMedicine" 
+        v-on:changeEditDescriptionComponent="closeEditDescription"
+        v-on:changeAddHistoryComponent="closeAddHistory">
     </component>
 </template>
     
@@ -197,15 +200,10 @@ export default {
                 description: '',
             },
 
-            PatientHistory: {
-                id: '',
-                date: '',
-                doctor: '',
-                title: '',
-                description: ''
-            },
+            PatientHistoryList: [],
 
-            setEditPatientdetailsComp: false
+            setEditPatientdetailsComp: false,
+            searchPhrase: '',
         }
     },
     components: {
@@ -223,14 +221,30 @@ export default {
     ],
     async mounted() {
         this.Patient = await GetPatientById(this.patientId);
-        this.PatientHistory = await getPatientHistoryById(this.patientId)
+        this.PatientHistoryList = await getPatientHistoryById(this.patientId)
         window.scrollTo(0, 0);
+    },
+    computed: {
+        filteredHistory() {
+            return this.PatientHistoryList.filter((history) => {
+                return history.title.toLocaleLowerCase().match(this.searchPhrase) ||
+                history.date.toLocaleLowerCase().match(this.searchPhrase) ||
+                history.doctor.toLocaleLowerCase().match(this.searchPhrase)
+            })
+        },
     },
     methods: {
         switchActiveComponent() {
             this.$emit('changePatientDetailsComponent', true)
         },
-        closeEditPatientDetails() {
+        setSearchPhrase(searchPhrase) {
+            this.searchPhrase = searchPhrase.toLocaleLowerCase();
+        },
+        closeEditPatientDetails(item) {
+            if(item != null){
+                this.Patient = item
+            }
+
             this.enableBtn = false;
             this.compToRender = '';
 
@@ -244,7 +258,11 @@ export default {
             document.documentElement.style.overflow = 'hidden';
             document.getElementById('background').style.filter = 'blur(7px)';
         },
-        closeEditMedicine() {
+        closeEditMedicine(item) {
+            if(item != null){
+                this.Patient = item
+            }
+
             this.enableBtn = false;
             this.compToRender = '';
             document.getElementById('background').style.filter = 'none'
@@ -254,7 +272,11 @@ export default {
             this.compToRender = 'EditMedicine';
             document.getElementById('background').style.filter = 'blur(7px)'
         },
-        closeEditDescription() {
+        closeEditDescription(item) {
+            if(item != null){
+                this.Patient = item
+            }
+            
             this.enableBtn = false;
             this.compToRender = '';
             document.getElementById('background').style.filter = 'none'
@@ -264,7 +286,10 @@ export default {
             this.compToRender = 'EditDescription';
             document.getElementById('background').style.filter = 'blur(7px)'
         },
-        closeAddHistory() {
+        closeAddHistory(item) {
+            item.date = "now"
+            this.PatientHistory.unshift(item)
+
             this.enableBtn = false;
             this.compToRender = '';
             document.getElementById('background').style.filter = 'none'
