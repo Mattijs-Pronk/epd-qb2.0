@@ -3,7 +3,7 @@ import { UpdatePatientDescription } from '../assets/Patient'
 import { AlertMessage } from '../assets/global';
 
 import {
-    checkMedicineDescription
+    checkMedicineDescription, checkEnterCount
 } from '../assets/Validate';
 
 defineProps({
@@ -27,7 +27,7 @@ defineProps({
 
                 <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
-                        <textarea class="inputBox-field" type="text" v-model="Patient.description" @blur="Description"
+                        <textarea id="description" class="inputBox-field" type="text" v-model="Patient.description" @blur="Description"
                             @keyup="Description"></textarea>
                         <span>Description</span>
                         <p1 v-if="descriptionError" class="text-danger">{{ descriptionError }}</p1>
@@ -63,7 +63,7 @@ export default {
         return {
             Patient: {
                 id: this.currentPatient.id,
-                description: this.currentPatient.description,
+                description: this.currentPatient.description.replace(/<br\s*[\/]?>/gi, "\n"),
             },
 
             descriptionError: ''
@@ -77,12 +77,21 @@ export default {
             this.$emit('changeEditDescriptionComponent', item)
         },
         Description() {
-            this.descriptionError = checkMedicineDescription(this.Patient.description)
+            this.descriptionError = checkMedicineDescription(this.Patient.description, 'description')
+        },
+        Enter() {
+            if (this.descriptionError.length > 0) {
+                this.descriptionError += ", " + checkEnterCount(this.Patient.description, 'description');
+            } else {
+                this.descriptionError = checkEnterCount(this.Patient.description, 'description');
+            }
         },
         async submitForm() {
             this.Description();
+            this.Enter();
 
             if (this.descriptionError == '') {
+                this.Patient.description = this.Patient.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
                 if (await UpdatePatientDescription(this.Patient)) {
                     const id = 1;
                     const message = 'Patient description has been updated';

@@ -3,7 +3,7 @@ import { UpdatePatientMedicine } from '../assets/Patient'
 import { AlertMessage } from '../assets/global';
 
 import {
-    checkMedicineDescription
+    checkMedicineDescription, checkEnterCount
 } from '../assets/Validate';
 
 defineProps({
@@ -27,8 +27,8 @@ defineProps({
 
                 <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
-                        <textarea class="inputBox-field" type="text" v-model="Patient.medicine" @blur="Medicine"
-                            @keyup="Medicine"></textarea>
+                        <textarea id="medicine" class="inputBox-field" type="text" v-model="Patient.medicine"
+                            @blur="Medicine" @keyup="Medicine"></textarea>
                         <span>Medicine</span>
                         <p1 v-if="medicineError" class="text-danger">{{ medicineError }}</p1>
                     </div>
@@ -63,10 +63,10 @@ export default {
         return {
             Patient: {
                 id: this.currentPatient.id,
-                medicine: this.currentPatient.medicine,
+                medicine: this.currentPatient.medicine.replace(/<br\s*[\/]?>/gi, "\n"),
             },
 
-            medicineError: ''
+            medicineError: '',
         }
     },
     emits: [
@@ -77,12 +77,21 @@ export default {
             this.$emit('changeEditMedicineComponent', item)
         },
         Medicine() {
-            this.medicineError = checkMedicineDescription(this.Patient.medicine)
+            this.medicineError = checkMedicineDescription(this.Patient.medicine, 'medicine')
+        },
+        Enter() {
+            if (this.medicineError.length > 0) {
+                this.medicineError += ", " + checkEnterCount(this.Patient.medicine, 'medicine');
+            } else {
+                this.medicineError = checkEnterCount(this.Patient.medicine, 'medicine');
+            }
         },
         async submitForm() {
             this.Medicine();
+            this.Enter();
 
             if (this.medicineError == '') {
+                this.Patient.medicine = this.Patient.medicine.replace(/(?:\r\n|\r|\n)/g, '<br>');
                 if (await UpdatePatientMedicine(this.Patient)) {
                     const id = 1;
                     const message = 'Patient medicine has been updated';

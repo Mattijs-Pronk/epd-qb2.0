@@ -9,6 +9,15 @@ import {
     GetPatientById, getPatientHistoryById 
 }
 from '../assets/Patient';
+
+defineProps({
+    patientId: {
+        required: true,
+    },
+    getpatientdetails: {
+        required: true,
+    },
+});
 </script>
 
 <template>
@@ -94,9 +103,8 @@ from '../assets/Patient';
                         </svg></span>
                     Medicine:
                 </p>
-                <p1 class="description">
-                    {{ Patient.medicine }}
-                </p1><br />
+                <p1 class="description" v-html="Patient.medicine"></p1>
+                <br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditMedicine()">
                     <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -117,9 +125,8 @@ from '../assets/Patient';
                         </svg></span>
                     Description:
                 </p>
-                <p1 class="description">
-                    {{ Patient.description }}
-                </p1><br />
+                <p1 class="description" v-html="Patient.description"></p1>
+                <br />
                 <button v-bind:disabled="enableBtn" class="btn-edit" v-on:click="openEditDescription()">
                     <span class="icon-btn-edit"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -161,9 +168,7 @@ from '../assets/Patient';
                         docter: {{ history.doctor }}
                     <hr /><br />
                     <h3>Description:</h3>
-                    <p1 class="description">
-                        {{ history.description }}
-                    </p1>
+                    <p1 class="description" v-html="history.description"></p1>
                 </div>
             </div>
         </div>
@@ -212,10 +217,6 @@ export default {
         EditDescription,
         AddPatientHistory
     },
-    props: [
-        'patientId',
-        'getpatientdetails'
-    ],
     emits: [
         "changePatientDetailsComponent"
     ],
