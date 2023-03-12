@@ -8,9 +8,9 @@ import {
 
 defineProps({
     currentPatient: {
-      required: true,
+        required: true,
     },
-  });
+});
 </script>
 
 <template>
@@ -25,7 +25,7 @@ defineProps({
                     </svg></span>
                 <hr />
 
-                <form @submit.prevent="submitForm" autocomplete="off"> 
+                <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
                         <textarea class="inputBox-field" type="text" v-model="Patient.description" @blur="Description"
                             @keyup="Description"></textarea>
@@ -82,17 +82,21 @@ export default {
         async submitForm() {
             this.Description();
 
-            if(this.descriptionError == ''){
-                await UpdatePatientDescription(this.Patient);
+            if (this.descriptionError == '') {
+                if (await UpdatePatientDescription(this.Patient)) {
+                    const id = 1;
+                    const message = 'Patient description has been updated';
+                    AlertMessage(id, message);
 
-                const id = 1;
-                const message = 'Patient description has been updated';
+                    this.closeEditDescription(this.Patient);
+                } else {
+                    const id = 2;
+                const message = 'Something went wrong';
                 AlertMessage(id, message);
-
-                this.closeEditDescription(this.Patient);
-            }else{
+                }
+            } else {
                 const id = 2;
-                const message = 'Patient description has not been updated';
+                const message = 'Please fill in all required forms correctly';
                 AlertMessage(id, message);
             }
         }

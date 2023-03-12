@@ -8,9 +8,9 @@ import {
 
 defineProps({
     currentPatient: {
-      required: true,
+        required: true,
     },
-  });
+});
 </script>
 
 <template>
@@ -82,17 +82,21 @@ export default {
         async submitForm() {
             this.Medicine();
 
-            if(this.medicineError == ''){
-                await UpdatePatientMedicine(this.Patient);
+            if (this.medicineError == '') {
+                if (await UpdatePatientMedicine(this.Patient)) {
+                    const id = 1;
+                    const message = 'Patient medicine has been updated';
+                    AlertMessage(id, message);
 
-                const id = 1;
-                const message = 'Patient medicine has been updated';
-                AlertMessage(id, message);
-
-                this.closeEditMedicine(this.Patient);
-            }else{
+                    this.closeEditMedicine(this.Patient);
+                } else {
+                    const id = 2;
+                    const message = 'Something went wrong';
+                    AlertMessage(id, message);
+                }
+            } else {
                 const id = 2;
-                const message = 'Patient medicine has not been updated';
+                const message = 'Please fill in all required forms correctly';
                 AlertMessage(id, message);
             }
         }

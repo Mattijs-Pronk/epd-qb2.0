@@ -26,15 +26,15 @@ import {
 
                 <form @submit.prevent="submitForm" autocomplete="off">
                     <div class="inputBox">
-                        <input id="img" class="inputBox-field" type="text" v-model="Patient.imageUrl" placeholder="https://imgur.png"
-                            @blur="Img" @keyup="Img">
+                        <input id="img" class="inputBox-field" type="text" v-model="Patient.imageUrl"
+                            placeholder="https://imgur.png" @blur="Img" @keyup="Img">
                         <span>Image URL</span>
                         <p1 v-if="imgError" class="text-danger">{{ imgError }}</p1>
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-first">
-                            <input id="firstname" class="inputBox-field" type="text" v-model="Patient.firstName" @blur="FirstName"
-                                @keyup="FirstName">
+                            <input id="firstname" class="inputBox-field" type="text" v-model="Patient.firstName"
+                                @blur="FirstName" @keyup="FirstName">
                             <span>Firstname <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
@@ -47,8 +47,8 @@ import {
                             <span>Infix</span>
                         </div>
                         <div class="inputBox-last">
-                            <input id="lastname" class="inputBox-field" type="text" v-model="Patient.lastName" @blur="LastName"
-                                @keyup="LastName">
+                            <input id="lastname" class="inputBox-field" type="text" v-model="Patient.lastName"
+                                @blur="LastName" @keyup="LastName">
                             <span>Lastname <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
@@ -59,8 +59,8 @@ import {
                     </div>
                     <div class="inputBox-align">
                         <div class="inputBox-dob">
-                            <input id="dob" class="inputBox-field" type="date" v-model="Patient.dateOfBirth" @blur="DateOfBirth"
-                                @keyup="DateOfBirth">
+                            <input id="dob" class="inputBox-field" type="date" v-model="Patient.dateOfBirth"
+                                @blur="DateOfBirth" @keyup="DateOfBirth">
                             <span>DateOfBirth <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
@@ -69,8 +69,8 @@ import {
                             <p1 v-if="dobError" class="text-danger">{{ dobError }}</p1>
                         </div>
                         <div class="inputBox-csn">
-                            <input id="csn" class="inputBox-field" type="text" v-model="Patient.citizenServiceNumber" @blur="CitizenServiceNumber"
-                                @keyup="CitizenServiceNumber">
+                            <input id="csn" class="inputBox-field" type="text" v-model="Patient.citizenServiceNumber"
+                                @blur="CitizenServiceNumber" @keyup="CitizenServiceNumber">
                             <span>CitizenServiceNumber <svg class="icon-required" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                     <path
@@ -143,17 +143,22 @@ export default {
             this.DateOfBirth();
 
             if (this.imgError == '' && this.firstnameError == '' && this.lastnameError == '' && this.csnError == '' && this.emailError == '' && this.dobError == '') {
-                await AddNewPatient(this.Patient)
 
-                const id = 1;
-                const message = 'Patient has been created';
-                AlertMessage(id, message);
+                if (await AddNewPatient(this.Patient)) {
+                    const id = 1;
+                    const message = 'Patient has been created';
+                    AlertMessage(id, message);
 
-                Object.assign(this.$data, this.$options.data())
+                    Object.assign(this.$data, this.$options.data())
+                } else {
+                    const id = 2;
+                    const message = 'Something went wrong';
+                    AlertMessage(id, message);
+                }
             }
             else {
                 const id = 2;
-                const message = 'Patient has not been created';
+                const message = 'Please fill in all required forms correctly';
                 AlertMessage(id, message);
             }
         },

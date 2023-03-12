@@ -74,12 +74,12 @@ export default {
         }
     },
     props: [
-    'currentPatient'
+        'currentPatient'
     ],
     emits: [
         "changeAddHistoryComponent"
     ],
-    mounted(){
+    mounted() {
         this.PatientHistory.patientId = this.currentPatient.id
     },
     methods: {
@@ -100,17 +100,20 @@ export default {
                 sessionStorage.setItem("DoctorName", "Pieter  van de Buurt")
                 this.PatientHistory.doctor = sessionStorage.getItem("DoctorName")
 
-                console.log(this.PatientHistory)
-                await AddNewPatientHistory(this.PatientHistory);
+                if (await AddNewPatientHistory(this.PatientHistory)) {
+                    const id = 1;
+                    const message = 'Patient history added';
+                    AlertMessage(id, message);
 
-                const id = 1;
-                const message = 'Patient history added';
-                AlertMessage(id, message);
-
-                this.closeAddHistory();
+                    this.closeAddHistory();
+                } else {
+                    const id = 2;
+                    const message = 'Something went wrong';
+                    AlertMessage(id, message);
+                }   
             } else {
                 const id = 2;
-                const message = 'Patient history not added';
+                const message = 'Please fill in all required forms correctly';
                 AlertMessage(id, message);
             }
         }
