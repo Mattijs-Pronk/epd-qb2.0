@@ -137,7 +137,7 @@ export default {
                 firstName: this.currentPatient.firstName,
                 infix: this.currentPatient.infix,
                 lastName: this.currentPatient.lastName,
-                dateOfBirth: this.currentPatient.dateOfBirth,
+                dateOfBirth: this.currentPatient.dateOfBirth.split("").reverse().join(""),
                 citizenServiceNumber: this.currentPatient.citizenServiceNumber,
                 adress: this.currentPatient.adress,
                 phoneNumber: this.currentPatient.phoneNumber,
@@ -169,6 +169,7 @@ export default {
             this.DateOfBirth();
 
             if (this.imgError == '' && this.firstnameError == '' && this.lastnameError == '' && this.csnError == '' && this.emailError == '' && this.dobError == '') {
+                this.Patient.dateOfBirth = this.Patient.dateOfBirth.split("").reverse().join("");
                 if (await UpdatePatientDetails(this.Patient)) {
                     const id = 1;
                     const message = 'Patient has been updated';

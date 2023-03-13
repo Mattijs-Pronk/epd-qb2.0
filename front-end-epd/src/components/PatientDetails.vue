@@ -289,7 +289,7 @@ export default {
         },
         closeAddHistory(item) {
             item.date = "now"
-            this.PatientHistory.unshift(item)
+            this.PatientHistoryList.unshift(item)
 
             this.enableBtn = false;
             this.compToRender = '';

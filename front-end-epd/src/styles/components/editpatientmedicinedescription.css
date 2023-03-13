@@ -37,7 +37,6 @@ section {
 .text-danger{
     color: #f44336;
     font-size: 14px;
-    font-weight: bold;
     position: absolute;
     left: 0;
     top: 365px;

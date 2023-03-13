@@ -146,11 +146,27 @@ export const checkRePassword = (password, repassword) => {
 
 //medicine,description checker
 export const checkMedicineDescription = (medicinedescription, id) => {
-    const error = medicinedescription.length > 800 ? 'To many characters (max 800)' : ''
-    
+    const error = checkEnterCount(medicinedescription) && medicinedescription.length > 800 ? 'To many characters (max 800) & To many enters (max 8)'
+    : medicinedescription.length > 800 ? 'To many characters (max 800)'
+    : checkEnterCount(medicinedescription) ? 'To many enters (max 8)' : ''  
+
     changeBorderColour(error, id);
 
     return error;
+};
+
+//enter count checker
+export const checkEnterCount = (item) => {
+    var count = 0;
+    var i;
+    for (i = 0; i < item.length; i++) {
+        if (item[i] === '\n' || item[i] === '\r') {
+            count++
+        };
+    };
+
+    if (count > 8) { return true }
+    return false
 };
 
 
@@ -173,23 +189,6 @@ export const checkHistoryDescription = (description) => {
         description.length >= 900 ? 'Description is too long' : '';
 
     changeBorderColour(error, 'historydescription');
-
-    return error;
-};
-
-//history description checker
-export const checkEnterCount = (item, id) => {
-    var count = 0;
-    var i;
-    for (i = 0; i < item.length; i++) {
-        if (item[i] === '\n' || item[i] === '\r') {
-            count++
-        };
-    };
-
-    const error = count > 8 ? 'To many enters (max of 8)' : '';
-
-    changeBorderColour(error, id);
 
     return error;
 };

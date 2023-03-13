@@ -63,10 +63,15 @@ export default {
         return {
             Patient: {
                 id: this.currentPatient.id,
-                description: this.currentPatient.description.replace(/<br\s*[\/]?>/gi, "\n"),
+                description: this.currentPatient.description,
             },
 
             descriptionError: ''
+        }
+    },
+    mounted(){
+        if(this.currentPatient.description != null){
+            this.Patient.description = this.currentPatient.description.replace(/<br\s*[\/]?>/gi, "\n")
         }
     },
     emits: [
@@ -79,16 +84,8 @@ export default {
         Description() {
             this.descriptionError = checkMedicineDescription(this.Patient.description, 'description')
         },
-        Enter() {
-            if (this.descriptionError.length > 0) {
-                this.descriptionError += ", " + checkEnterCount(this.Patient.description, 'description');
-            } else {
-                this.descriptionError = checkEnterCount(this.Patient.description, 'description');
-            }
-        },
         async submitForm() {
             this.Description();
-            this.Enter();
 
             if (this.descriptionError == '') {
                 this.Patient.description = this.Patient.description.replace(/(?:\r\n|\r|\n)/g, '<br>');

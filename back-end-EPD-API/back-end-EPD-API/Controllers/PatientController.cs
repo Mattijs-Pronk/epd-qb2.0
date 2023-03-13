@@ -4,6 +4,7 @@ using back_end_EPD_API.SignalRHubs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace back_end_EPD_API.Controllers
 {
@@ -50,6 +51,7 @@ namespace back_end_EPD_API.Controllers
         [HttpPost("addnewpatient")]
         public async Task<ActionResult> AddNewPatient([FromBody]Patient patient)
         {
+            patient.isActive = true;
             await _context.Patients.AddAsync(patient);
             await _context.SaveChangesAsync();
 
