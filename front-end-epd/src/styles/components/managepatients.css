@@ -89,6 +89,7 @@ section {
 .btn-edit:hover {
   background: var(--white);
   color: #FFCE30;
+  transition: .3s ease;
 }
 
 .icon-btn-edit {
@@ -99,6 +100,7 @@ section {
 
 .btn-edit:hover .icon-btn-edit {
   fill: #FFCE30;
+  transition: .3s ease;
 }
 
 .btn-delete {
@@ -119,6 +121,7 @@ section {
 .btn-delete:hover {
   background: var(--white);
   color: #D11A2A;
+  transition: .3s ease;
 }
 
 .icon-btn-delete {
@@ -129,6 +132,7 @@ section {
 
 .btn-delete:hover .icon-btn-delete {
   fill: #D11A2A;
+  transition: .3s ease;
 }
 
 @media screen and (min-width: 63em) {

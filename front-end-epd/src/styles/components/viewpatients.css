@@ -48,6 +48,7 @@ section {
     color: var(--main-colour);
     border: 1px solid var(--main-colour);
     transform: scale(1.05);
+    transition: .3s ease;
 }
 
 .icon {
@@ -64,6 +65,7 @@ section {
 
 .btn:hover .icon-btn {
     fill: var(--main-colour);
+    transition: .3s ease;
 }
 
 .items .box-container {

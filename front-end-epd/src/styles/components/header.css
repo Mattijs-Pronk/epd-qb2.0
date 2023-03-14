@@ -74,6 +74,7 @@ header .navbar ul li ul li {
 header .navbar ul li:focus-within ul,
 header .navbar ul li:hover ul {
   display: initial;
+  transition: .3s ease;
 }
 
 header .navbar ul li ul li a {
@@ -95,11 +96,13 @@ header .navbar ul li ul li a .icon {
 header .navbar ul li ul li a:hover,
 header .navbar ul li ul li a.active {
   color: var(--main-colour);
+  transition: .3s ease;
 }
 
 header .navbar ul li ul li a:hover .icon,
 header .navbar ul li ul li a.active .icon {
   fill: var(--main-colour);
+  transition: .3s ease;
 }
 
 header .navbar ul li ul li p {
@@ -137,6 +140,7 @@ header .navbar ul li .dropdown-icon {
 header .navbar ul li :hover .dropdown-icon,
 header .navbar ul li .active .dropdown-icon {
   fill: var(--main-colour);
+  transition: .3s ease;
 }
 
 /* The switch - the box around the slider */
@@ -165,8 +169,8 @@ header .navbar ul li .active .dropdown-icon {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
   border: 1px solid var(--main-colour);
 }
 
@@ -178,8 +182,8 @@ header .navbar ul li .active .dropdown-icon {
   width: 20px;
   top: 1px;
   background-color: var(--white);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 input:checked+.slider {

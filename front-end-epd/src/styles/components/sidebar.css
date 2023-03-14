@@ -71,6 +71,7 @@
 .wrapper .sidebar ul li a:hover .dropdown-icon,
 .wrapper .sidebar ul li a.active .dropdown-icon {
   fill: var(--main-colour);
+  transition: .3s ease;
 }
 
 .wrapper .sidebar ul li a:hover,
@@ -80,11 +81,13 @@
   border-right: 4px solid var(--main-colour);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  transition: .3s ease;
 }
 
 .wrapper .sidebar ul li a:hover .icon,
 .wrapper .sidebar ul li a.active .icon {
   fill: var(--main-colour);
+  transition: .3s ease;
 }
 
 

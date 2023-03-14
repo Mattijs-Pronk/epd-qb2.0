@@ -95,6 +95,7 @@ section {
   color: #4CAF50;
   border: 1px solid #4CAF50;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-save {
@@ -105,6 +106,7 @@ section {
 
 .btn-save:hover .icon-btn-save {
   fill: #4CAF50;
+  transition: .3s ease;
 }
 
 .btn-cancel {
@@ -128,6 +130,7 @@ section {
   color: #f44336;
   border: 1px solid #f44336;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-cancel {
@@ -138,6 +141,7 @@ section {
 
 .btn-cancel:hover .icon-btn-cancel {
   fill: #f44336;
+  transition: .3s ease;
 }
 
 .icon-btn-close {
@@ -151,6 +155,7 @@ section {
   fill: #f44336;
   cursor: pointer;
   transform: scale(1.1);
+  transition: .3s ease;
 }
 
 /* The switch - the box around the slider */
@@ -179,8 +184,8 @@ section {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
   border: 1px solid var(--main-colour);
 }
 
@@ -192,8 +197,8 @@ section {
   left: 4px;
   bottom: 3px;
   background-color: var(--white);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 input:checked+.slider {
@@ -291,6 +296,7 @@ input:checked+.slider:before {
 .inputBox-field:hover,
 .inputBox-field:focus {
   background-color: var(--white);
+  transition: .3s ease;
 }
 
 .inputBox-dob span,

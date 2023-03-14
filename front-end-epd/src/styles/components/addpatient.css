@@ -105,6 +105,7 @@ section {
   color: #4CAF50;
   border: 1px solid #4CAF50;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-save {
@@ -115,6 +116,7 @@ section {
 
 .btn-save:hover .icon-btn-save {
   fill: #4CAF50;
+  transition: .3s ease;
 }
 
 .inputBox-align {
@@ -194,6 +196,7 @@ section {
 .inputBox-field:hover,
 .inputBox-field:focus {
   background-color: var(--white);
+  transition: .3s ease;
 }
 
 .inputBox-dob span,

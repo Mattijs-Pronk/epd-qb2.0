@@ -94,6 +94,7 @@ section {
   color: #4CAF50;
   border: 1px solid #4CAF50;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-save {
@@ -104,6 +105,7 @@ section {
 
 .btn-save:hover .icon-btn-save {
   fill: #4CAF50;
+  transition: .3s ease;
 }
 
 .inputBox-align {
@@ -177,6 +179,7 @@ section {
 .inputBox-field:hover,
 .inputBox-field:focus {
   background-color: var(--white);
+  transition: .3s ease;
 }
 
 .inputBox-dob span,
@@ -235,6 +238,7 @@ section {
 .select:hover {
   outline: none;
   border: 1px solid var(--main-colour);
+  transition: .3s ease;
 }
 
 .select option {
@@ -287,15 +291,18 @@ section {
 .dropdown-content p:hover {
   background: var(--text-background);
   border-right: 3px solid var(--main-colour);
+  transition: .3s ease;
 }
 
 .dropdown:hover {
   background: var(--white);
+  transition: .3s ease;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
   background: var(--white);
+  transition: .3s ease;
 }
 
 .dropdown-icon {

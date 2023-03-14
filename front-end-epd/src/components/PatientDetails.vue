@@ -4,6 +4,7 @@ import EditMedicine from './EditPatientMedicine.vue';
 import EditDescription from './EditPatientDescription.vue';
 import AddPatientHistory from './AddPatientHistory.vue';
 import Searchbarsmall from './SearchbarSmall.vue';
+import AddPatientHistory2 from './AddPatientHistory2.vue';
 
 import { 
     GetPatientById, getPatientHistoryById 
@@ -21,7 +22,7 @@ defineProps({
 </script>
 
 <template>
-    <section v-if="getpatientdetails">
+    <section v-if="getpatientdetails2">
         <div class="container" id="background">
             <div class="box2">
                 <h1>Patient Dossier</h1>
@@ -139,7 +140,7 @@ defineProps({
 
             <div class="box3">
                 <h1>Patients history</h1>
-                <button v-bind:disabled="enableBtn" class="btn" v-on:click="openAddHistory()">
+                <button v-bind:disabled="enableBtn" class="btn" v-on:click="switchToAddHistoryComponent">
                     <span class="icon-btn"><svg xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                             <path
@@ -174,11 +175,12 @@ defineProps({
         </div>
     </section>
 
-    <component :is="compToRender" :getEditPatientdetailsComp="setEditPatientdetailsComp" :currentPatient="Patient"
+    <component :is="compToRender" :currentPatient="Patient" :getPatientaddhistory="setPatientaddhistory"
         v-on:changeEditPatientDetailsComponent="closeEditPatientDetails"
         v-on:changeEditMedicineComponent="closeEditMedicine" 
         v-on:changeEditDescriptionComponent="closeEditDescription"
-        v-on:changeAddHistoryComponent="closeAddHistory">
+        v-on:changeAddHistoryComponent="closeAddHistory"
+        v-on:changePatientAddHistory="switchToAddHistoryComponent">
     </component>
 </template>
     
@@ -207,15 +209,18 @@ export default {
 
             PatientHistoryList: [],
 
-            setEditPatientdetailsComp: false,
             searchPhrase: '',
+
+            getpatientdetails2: this.getpatientdetails,
+            setPatientaddhistory: false,
         }
     },
     components: {
         EditPatientDetails,
         EditMedicine,
         EditDescription,
-        AddPatientHistory
+        AddPatientHistory,
+        AddPatientHistory2
     },
     emits: [
         "changePatientDetailsComponent"
@@ -237,6 +242,12 @@ export default {
     methods: {
         switchActiveComponent() {
             this.$emit('changePatientDetailsComponent', true)
+        },
+        switchToAddHistoryComponent() {
+            this.getpatientdetails2 = !this.getpatientdetails2
+            this.setPatientaddhistory = !this.setPatientaddhistory
+            this.compToRender = 'AddPatientHistory2'
+            window.scrollTo(0, 0);
         },
         setSearchPhrase(searchPhrase) {
             this.searchPhrase = searchPhrase.toLocaleLowerCase();

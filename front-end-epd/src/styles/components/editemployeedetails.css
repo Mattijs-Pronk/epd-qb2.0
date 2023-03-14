@@ -98,6 +98,7 @@ section {
   color: #4CAF50;
   border: 1px solid #4CAF50;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-save {
@@ -108,6 +109,7 @@ section {
 
 .btn-save:hover .icon-btn-save {
   fill: #4CAF50;
+  transition: .3s ease;
 }
 
 .btn-add {
@@ -132,6 +134,7 @@ section {
   border: 1px solid #4CAF50;
   background: var(--white);
   color: #4CAF50;
+  transition: .3s ease;
 }
 
 .btn-add option {
@@ -159,6 +162,7 @@ section {
   color: #f44336;
   border: 1px solid #f44336;
   transform: scale(1.05);
+  transition: .3s ease;
 }
 
 .icon-btn-cancel {
@@ -169,6 +173,7 @@ section {
 
 .btn-cancel:hover .icon-btn-cancel {
   fill: #f44336;
+  transition: .3s ease;
 }
 
 .icon-btn-close {
@@ -182,6 +187,7 @@ section {
   fill: #f44336;
   cursor: pointer;
   transform: scale(1.1);
+  transition: .3s ease;
 }
 
 
@@ -211,8 +217,8 @@ section {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
   border: 1px solid var(--main-colour);
 }
 
@@ -224,8 +230,8 @@ section {
   left: 4px;
   bottom: 3px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 input:checked+.slider {
@@ -322,6 +328,7 @@ input:checked+.slider:before {
 .inputBox-field:hover,
 .inputBox-field:focus {
   background-color: var(--white);
+  transition: .3s ease;
 }
 
 .inputBox-dob span,
@@ -420,6 +427,7 @@ input:checked+.slider:before {
 .select:hover {
   outline: none;
   border: 1px solid var(--main-colour);
+  transition: .3s ease;
 }
 
 .select option {
@@ -450,6 +458,7 @@ input:checked+.slider:before {
 
 .table tr:hover {
   background-color: var(--background);
+  transition: .3s ease;
 }
 
 .btn-delete {
@@ -470,6 +479,7 @@ input:checked+.slider:before {
 .btn-delete:hover {
   background: var(--white);
   color: #D11A2A;
+  transition: .3s ease;
 }
 
 .icon-btn-delete {
@@ -480,6 +490,7 @@ input:checked+.slider:before {
 
 .btn-delete:hover .icon-btn-delete {
   fill: #D11A2A;
+  transition: .3s ease;
 }
 
 .dropdown-left{
@@ -509,6 +520,7 @@ input:checked+.slider:before {
   border: 1px solid #4CAF50;
   background: var(--white);
   color: #4CAF50;
+  transition: .3s ease;
 }
 
 .dropdown2-icon {
@@ -522,6 +534,7 @@ input:checked+.slider:before {
 
 .dropdown2:hover .dropdown2-icon {
   fill: #4CAF50;
+  transition: .3s ease;
 }
 
 .dropdown {
@@ -566,16 +579,19 @@ input:checked+.slider:before {
 .dropdown-content p:hover {
   background: var(--text-background);
   border-right: 3px solid var(--main-colour);
+  transition: .3s ease;
 }
 
 .dropdown:hover{
   background: var(--white);
+  transition: .3s ease;
 }
 
 .dropdown2:hover .dropdown2-content,
 .dropdown:hover .dropdown-content {
   display: block;
   background: var(--white);
+  transition: .3s ease;
 }
 
 .dropdown-icon {

@@ -43,7 +43,7 @@ section {
 
 .box2 img {
     width: 200px;
-    border-radius: 20%;
+    border-radius: 10px;
 }
 
 .box2 h1 {
@@ -77,6 +77,7 @@ section {
     color: #4CAF50;
     border: 1px solid #4CAF50;
     transform: scale(1.05);
+    transition: .3s ease;
 }
 
 .icon-btn {
@@ -87,6 +88,7 @@ section {
 
 .btn:hover .icon-btn {
     fill: #4CAF50;
+    transition: .3s ease;
 }
 
 .btn-edit {
@@ -111,6 +113,7 @@ section {
     color: #FFCE30;
     border: 1px solid #FFCE30;
     transform: scale(1.05);
+    transition: .3s ease;
 }
 
 .icon-btn-edit {
@@ -121,6 +124,7 @@ section {
 
 .btn-edit:hover .icon-btn-edit {
     fill: #FFCE30;
+    transition: .3s ease;
 }
 
 
@@ -173,14 +177,13 @@ section {
     color: var(--main-colour);
     transform: scale(1.05);
     border: 1px solid var(--main-colour);
+    transition: .3s ease;
 }
 
 .btn-return:hover .icon-btn-return {
     fill: var(--main-colour);
+    transition: .3s ease;
 }
-
-
-
 
 .box2 {
     padding: 1.5rem;
@@ -209,8 +212,6 @@ section {
     font-weight: bold;
     color: var(--black);
 }
-
-
 
 .box3 {
     padding: 1.5rem;
